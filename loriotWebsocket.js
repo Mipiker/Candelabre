@@ -12,10 +12,8 @@ async function connectToWebsocket() {
     });
 
     websocket.on('message', function (data) {
-        const message = data.toString();
-        //console.log(message);
-        const obj = JSON.parse(message);
-        console.log('CMD:' + obj.cmd + ' | EUI:' + obj.EUI + ' | DATA:' + obj.data);
+        const obj = JSON.parse(data.toString());
+        console.log(`CMD:${obj.cmd} | EUI:${obj.EUI} | DATA:${obj.data}`);
     });
 
     websocket.on('close', function (code, reason) {
@@ -36,8 +34,7 @@ function sendPayload(EUI, port, data) {
             confirmed:false,
             data:data
         }
-        payloadString = JSON.stringify(payload);
-        websocket.send(payloadString);
+        websocket.send(JSON.stringify(payload));
         console.log('Paylaod send to loriot server');
     } else { 
         console.log('Loriot websocket connection not open. Cannot send payload');
