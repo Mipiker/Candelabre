@@ -21,7 +21,7 @@ async function connectToWebsocket() {
     });
 
     websocket.on('error', function (error) {
-        console.error('Loriot websocket error:', error);
+        console.error('Loriot websocket error: ', error);
     });
 }
 

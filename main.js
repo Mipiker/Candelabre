@@ -1,8 +1,10 @@
 const loriotWebsocket = require('./loriotWebsocket');
-const utils = require('./utils')
+const utils = require('./utils');
+const weatherAPI = require('./weatherAPI');
 
-loriotWebsocket.connectToWebsocket();
-takeMeasureAfter10s();
+//loriotWebsocket.connectToWebsocket();
+//takeMeasureAfter10s();
+weatherAPI.weatherRequest();
 
 async function takeMeasureAfter10s() {
     await utils.sleep(10*1000);
