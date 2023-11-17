@@ -3,7 +3,7 @@ const WebSocket = require('ws');
 const uri = 'wss://eu1.loriot.io/app?token=vnop3gAAAA1ldTEubG9yaW90LmlvULNu1IIiBz1KvdF2U4Rnbw==';
 let websocket;
 
-async function connectToWebsocket() {
+function connectToWebsocket() {
     
     websocket = new WebSocket(uri);
 
@@ -14,6 +14,9 @@ async function connectToWebsocket() {
     websocket.on('message', function (data) {
         const obj = JSON.parse(data.toString());
         console.log(`CMD:${obj.cmd} | EUI:${obj.EUI} | DATA:${obj.data}`);
+        if(obj.cmd === 'rx' && obj.data.length) {
+            console.log('This data should be saved');
+        }
     });
 
     websocket.on('close', function (code, reason) {
