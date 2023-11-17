@@ -5,7 +5,7 @@ let websocket;
 
 async function connectToWebsocket() {
     
-    websocket = new WebSocket(uri);
+    websocket = new WebSocket(uri); 
 
     websocket.on('open', function () {
         console.log('Connected to the loriot server');
