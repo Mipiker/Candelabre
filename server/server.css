@@ -1,0 +1,54 @@
+
+#frqmax {
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color:orange;
+    border:transparent;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+#pui {
+    display: flex;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color:orange;
+    border:transparent;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+
+#amp {
+    display: flex;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius:5px ;
+    border:transparent;
+    background-color: transparent;
+    color:orange;
+}
+
+#frqmax:active {
+    background-color: skyblue;
+    outline: none; /* Pour enlever la bordure bleu */
+}
+
+#pui:active {
+    background-color: skyblue;
+    outline: none; /* Pour enlever la bordure bleu */
+}
+
+#amp:active {
+    background-color: skyblue;
+    outline: none; /* Pour enlever la bordure bleu */
+}
