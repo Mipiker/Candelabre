@@ -1,8 +1,10 @@
 const WebSocket = require('ws');
+const logManager = require('./logManager');
 
 const uri = 'wss://eu1.loriot.io/app?token=vnop3gAAAA1ldTEubG9yaW90LmlvULNu1IIiBz1KvdF2U4Rnbw==';
 let websocket;
 
+// Connect the websocket to loriot and manage received packets
 function connectToWebsocket() {
     
     websocket = new WebSocket(uri);
@@ -15,7 +17,7 @@ function connectToWebsocket() {
         const obj = JSON.parse(data.toString());
         console.log(`CMD:${obj.cmd} | EUI:${obj.EUI} | DATA:${obj.data}`);
         if(obj.cmd === 'rx' && obj.data.length) {
-            console.log('This data should be saved');
+            logManager.saveData(obj.EUI, decodeData(obj.data));
         }
     });
 
@@ -28,6 +30,7 @@ function connectToWebsocket() {
     });
 }
 
+// Send data to the device EUI on port
 function sendPayload(EUI, port, data) {
     if(websocket && websocket.readyState == WebSocket.OPEN) {
         const payload = {
@@ -44,10 +47,39 @@ function sendPayload(EUI, port, data) {
     }
 }
 
-function takeMeasure(EUI, fe, Ne) {
-    data = Ne.toString(16).padStart(4, '0');
+// Instruct the device EUI to take a identificated measure with parameter fe and Ne  
+function takeMeasure(EUI, fe, Ne, measureID) {
+    data = measureID.toString(16).padStart(4, '0');
+    data += Ne.toString(16).padStart(4, '0');
     data += fe.toString(16).padStart(2, '0');
     sendPayload(EUI, 1, data);
+    logManager.saveDownlink(new Date());
+}
+
+// Transform a packed data to a structured data
+function decodeData(data) {
+    data = BigInt(`0x${data}`);
+    let dataStruct = {
+        fe: Number(data & 0xFFn),
+        Ne: Number((data >> 8n) & 0xFFFFn),
+        measureID: Number((data >> 24n) & 0xFFFFn),
+        pX: Number((data >> 40n) & 0xFFFFn),
+        pY: Number((data >> 56n) & 0xFFFFn),
+        pZ: Number((data >> 72n) & 0xFFFFn),
+        avgX: (Number((data >> 88n) & 0xFFFFn) * 1e-3),
+        avgY: (Number((data >> 104n) & 0xFFFFn) * 1e-3),
+        avgZ: (Number((data >> 120n) & 0xFFFFn) * 1e-3),
+        magX: (Number((data >> 136n) & 0xFFFFn) * 1e-3),
+        magY: (Number((data >> 152n) & 0xFFFFn) * 1e-3),
+        magZ: (Number((data >> 168n) & 0xFFFFn) * 1e-3),
+        freqX: Number((data >> 184n) & 0xFFFFn),
+        freqY: Number((data >> 200n) & 0xFFFFn),
+        freqZ: Number((data >> 216n) & 0xFFFFn)
+    }
+    dataStruct.freqX *= dataStruct.fe/dataStruct.Ne;
+    dataStruct.freqY *= dataStruct.fe/dataStruct.Ne;
+    dataStruct.freqZ *= dataStruct.fe/dataStruct.Ne;
+    return dataStruct;
 }
 
 module.exports = {

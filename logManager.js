@@ -24,6 +24,24 @@ async function getData(EUI) {
     return await csv().fromFile(`./log/${EUI}.csv`);
 }
 
+// Save the downlink date
+async function saveDownlink(date) {
+    const path = './log/downlink.csv';
+    const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + date.toUTCString() + '\n';
+    fs.appendFile(path, newCsvLine, 'utf8', (err) => {
+        if (err) {
+            console.error(`Error saving ${date.toUTCString()} downlink :`, err);
+            return;
+        }
+        console.log(`Downlink ${date.toUTCString()} saved successfully`);
+    });
+}
+
+// Return all downlink dates
+async function getDownlink() {
+    return await csv().fromFile('./log/downlink.csv');
+}
+
 // Return if the end of the file has a new line 
 function fileHasNewLine(path) {
     const buffer = Buffer.alloc(1);
@@ -36,5 +54,7 @@ function fileHasNewLine(path) {
 module.exports = {
     getDevices:getDevices,
     saveData:saveData,
-    getData:getData
+    getData:getData,
+    saveDownlink:saveDownlink,
+    getDownlink:getDownlink
 }
