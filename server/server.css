@@ -11,83 +11,95 @@
     text-align: left;
 	text-indent: 10px;
 	color: white;
+    border-radius: 10px 35px 10px 10px;
 	/* Générateur de code couleur -- http://www.workwithcolor.com/hsl-color-picker-01.htm */
-    background: hsla(193, 74%, 55%, 0.3);
+    background: hsla(20, 96%, 59%, 0.4);
   }
 
 
 #frqmax {
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    color:orange;
+    color:rgb(8, 5, 0);
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 20%;
 
 }
 
 #pui {
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    color:orange;
+    color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 20%;
 
 }
 
 
 #amp {
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    color:orange;
+    color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 20%;
     
 }
 
 
 #devices {
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    color:orange;
+    color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 20%;
 
 
 }
 #anomalies {
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    color:orange;
+    color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
-    margin-top: 200px;
+    margin-top: 100%;
 }
 
-
+#para {
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color:rgb(0, 0, 0);
+    border:transparent;
+    background-color: transparent;
+    border-radius: 5px;
+    margin-top: 60%;
+}
 
  
 

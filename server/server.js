@@ -68,3 +68,16 @@ var button4 = document.querySelector('#devices');
             button4.style.color = "";
         });
         
+var button5 = document.querySelector('#para');
+
+        // Ajouter un écouteur d'événement pour détecter le survol
+        button5.addEventListener('mouseover', function() {
+            button5.style.backgroundColor = "skyblue";
+            button5.style.color = "orange";
+        });
+
+        // Ajouter un écouteur d'événement pour détecter la sortie du survol
+        button5.addEventListener('mouseout', function() {
+            button5.style.backgroundColor = "";
+            button5.style.color = "";
+        });
