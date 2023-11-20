@@ -1,3 +1,20 @@
+#menu {
+    height: 80%;
+    position: fixed;
+    left: 2px;
+    top: 20%;
+    width: 150px;
+    margin: 0 0 0 0;
+	padding: 10px 0px 10px 35px;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+	text-indent: 10px;
+	color: white;
+	/* Générateur de code couleur -- http://www.workwithcolor.com/hsl-color-picker-01.htm */
+    background: hsla(193, 74%, 55%, 0.3);
+  }
+
 
 #frqmax {
     display: flex;
@@ -9,6 +26,8 @@
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
+    margin-top: 30px;
+
 }
 
 #pui {
@@ -21,6 +40,8 @@
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
+    margin-top: 30px;
+
 }
 
 
@@ -30,25 +51,14 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    border-radius:5px ;
-    border:transparent;
-    background-color: transparent;
-    color:orange;
-    
-    
-}
-
-#anomalies {
-    display: flex;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
     color:orange;
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
+    margin-top: 30px;
+    
 }
+
 
 #devices {
     display: flex;
@@ -60,31 +70,26 @@
     border:transparent;
     background-color: transparent;
     border-radius: 5px;
+    margin-top: 30px;
+
 
 }
-
-#frqmax:active {
-    background-color: skyblue;
-    outline: none; /* Pour enlever la bordure bleu */
+#anomalies {
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color:orange;
+    border:transparent;
+    background-color: transparent;
+    border-radius: 5px;
+    margin-top: 200px;
 }
 
-#pui:active {
-    background-color: skyblue;
-    outline: none; /* Pour enlever la bordure bleu */
-}
 
-#amp:active {
-    background-color: skyblue;
-    outline: none; /* Pour enlever la bordure bleu */
-}
 
-#anomalies:active {
-    background-color: skyblue;
-    outline: none; /* Pour enlever la bordure bleu */
-}
+ 
 
-#devices:active {
-    background-color: skyblue;
-    outline: none; /* Pour enlever la bordure bleu */
-}
+
 
