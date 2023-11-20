@@ -13,7 +13,6 @@
 
 #pui {
     display: flex;
-    padding: 10px 20px;
     font-size: 16px;
     text-align: center;
     text-decoration: none;
@@ -27,7 +26,6 @@
 
 #amp {
     display: flex;
-    padding: 10px 20px;
     font-size: 16px;
     text-align: center;
     text-decoration: none;
@@ -36,6 +34,33 @@
     border:transparent;
     background-color: transparent;
     color:orange;
+    
+    
+}
+
+#anomalies {
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color:orange;
+    border:transparent;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+#devices {
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color:orange;
+    border:transparent;
+    background-color: transparent;
+    border-radius: 5px;
+
 }
 
 #frqmax:active {
@@ -52,3 +77,14 @@
     background-color: skyblue;
     outline: none; /* Pour enlever la bordure bleu */
 }
+
+#anomalies:active {
+    background-color: skyblue;
+    outline: none; /* Pour enlever la bordure bleu */
+}
+
+#devices:active {
+    background-color: skyblue;
+    outline: none; /* Pour enlever la bordure bleu */
+}
+
