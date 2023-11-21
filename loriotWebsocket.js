@@ -1,8 +1,10 @@
-const WebSocket = require('ws');
 const logManager = require('./logManager');
+const utils = require('./utils');
+const WebSocket = require('ws');
 
 const uri = 'wss://eu1.loriot.io/app?token=vnop3gAAAA1ldTEubG9yaW90LmlvULNu1IIiBz1KvdF2U4Rnbw==';
 let websocket;
+let downlinksDates = [];
 
 // Connect the websocket to loriot and manage received packets
 function connectToWebsocket() {
@@ -48,24 +50,27 @@ function sendPayload(EUI, port, data) {
 }
 
 // Instruct the device EUI to take a identificated measure with parameter fe and Ne  
-function takeMeasure(EUI, fe, Ne, measureID) {
-    data = measureID.toString(16).padStart(4, '0');
-    data += Ne.toString(16).padStart(4, '0');
+function takeMeasure(EUI, fe, Ne) {
+    if(downlinksDates.length == 65535)
+        downlinksDates = [];
+    downlinksDates.push(new Date());
+    data = Ne.toString(16).padStart(4, '0');
     data += fe.toString(16).padStart(2, '0');
+    data += (downlinksDates.length - 1).toString(16).padStart(4, '0');
     sendPayload(EUI, 1, data);
-    logManager.saveDownlink(new Date());
+    logManager.saveDownlink(downlinksDates[downlinksDates.length - 1]);
 }
 
 // Transform a packed data to a structured data
 function decodeData(data) {
     data = BigInt(`0x${data}`);
     let dataStruct = {
-        fe: Number(data & 0xFFn),
-        Ne: Number((data >> 8n) & 0xFFFFn),
-        measureID: Number((data >> 24n) & 0xFFFFn),
-        pX: Number((data >> 40n) & 0xFFFFn),
-        pY: Number((data >> 56n) & 0xFFFFn),
-        pZ: Number((data >> 72n) & 0xFFFFn),
+        date: utils.getDate(downlinksDates[Number(data & 0xFFFFn)]),
+        fe: Number((data >> 16n) & 0xFFn),
+        Ne: Number((data >> 24n) & 0xFFFFn),
+        pX: Number((data >> 40n) & 0xFFFFn) * 1e-3,
+        pY: Number((data >> 56n) & 0xFFFFn) * 1e-3,
+        pZ: Number((data >> 72n) & 0xFFFFn) * 1e-3,
         avgX: (Number((data >> 88n) & 0xFFFFn) * 1e-3),
         avgY: (Number((data >> 104n) & 0xFFFFn) * 1e-3),
         avgZ: (Number((data >> 120n) & 0xFFFFn) * 1e-3),

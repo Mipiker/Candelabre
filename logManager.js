@@ -1,3 +1,4 @@
+const utils = require('./utils');
 const csv = require('csvtojson');
 const fs = require('fs');
 
@@ -27,7 +28,7 @@ async function getData(EUI) {
 // Save the downlink date
 async function saveDownlink(date) {
     const path = './log/downlink.csv';
-    const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + date.toUTCString() + '\n';
+    const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + utils.getDate(date) + '\n';
     fs.appendFile(path, newCsvLine, 'utf8', (err) => {
         if (err) {
             console.error(`Error saving ${date.toUTCString()} downlink :`, err);

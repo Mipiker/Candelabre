@@ -6,12 +6,12 @@ const utils = require('./utils')
 const MIN_WIND_SPEED = 0;
 
 init();
-//setInterval(mainLoop, 40*1000);
+setInterval(mainLoop, 60*1000);
 
 async function init() {
     loriotWebsocket.connectToWebsocket();
     await utils.sleep(5000);
-    loriotWebsocket.takeMeasure('0080E115000AC899', 20, 128, 6);
+    loriotWebsocket.takeMeasure('0080E115000AC899', 20, 128);
 }
 
 async function mainLoop() {
