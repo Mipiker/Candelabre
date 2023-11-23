@@ -92,7 +92,7 @@ var button5 = document.querySelector('#para');
             datasets: [{
                 label: 'Données 1',
                 data: [12, 19, 3, 5, 2],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: 'rgba(255, 99, 12, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             }]

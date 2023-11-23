@@ -1,19 +1,19 @@
 #menu {
-    height: 80%;
+    height: 100%;
     position: fixed;
-    left: 2px;
-    top: 20%;
+    left: 0px;
+    top: 0%;
     width: 150px;
     margin: 0 0 0 0;
-	padding: 10px 0px 10px 35px;
+	padding: 4px 10px 30px 0px;
     font-weight: bold;
     font-size: large;
     text-align: left;
-	text-indent: 10px;
+	text-indent: 0px;
 	color: rgb(255, 255, 255);
-    border-radius: 10px 35px 10px 10px;
+    border-radius: 0px 25px 10px 10px;
 	/* Générateur de code couleur -- http://www.workwithcolor.com/hsl-color-picker-01.htm */
-    background: hsla(19, 98%, 49%, 0.808)
+    background: hsla(19, 98%, 49%, 0.608)
   }
 
 
