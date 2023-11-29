@@ -84,8 +84,6 @@ function afficherPuissance(){
     var ctx1 = document.getElementById('graphique1').getContext('2d');
     var ctx2 = document.getElementById('graphique2').getContext('2d');
     var ctx3 = document.getElementById('graphique3').getContext('2d');
-    var ctx4 = document.getElementById('deviceview').getContext("2d");
-
 
 //ajout graphique 1
     var graphique1 = new Chart(ctx1, {
@@ -154,6 +152,9 @@ function afficherPuissance(){
     });
    
 }
+
+
+
 
 //ajout de ligne dans notre tableau de page
 

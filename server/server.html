@@ -10,30 +10,28 @@
 </head>
 <body>
     
-    <div id="puissancex">
+    <div id="axex">
         <canvas id="graphique1" width="20" height="10"></canvas>
     </div>
 
-    <div id="puissancey">
+    <div id="axey">
         <canvas id="graphique2" width="20" height="10"></canvas>    
     </div>
 
-    <div id="puissancez">
+    <div id="axez">
         <canvas id="graphique3" width="20" height="10"></canvas>    
     </div>
-
-    <div id="appercu">
-        <canvas id="deviceview" width="20" height="10"></canvas>
-    </div>
+    
+    
 
    
 
     <div id=menu>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgpX5bLYHeHbQ3X2iCRLfyovvP_mA1B-6u6B0BhuCyZg&s" alt="image Rincent" height= 120 width="160">
 
-        <button id="amp">Amplitude Maximale</button>
+        <button id="amp" onclick="afficherAmplitude()">Amplitude Maximale</button>
         <button id="pui" onclick="afficherPuissance()">Puissance</button>
-        <button id="frqmax" >Frequence Maximale</button>    
+        <button id="frqmax" onclick="afficherFrqmax()" >Frequence Maximale</button>    
         
         <a href="anomalies.html" >
             <button id="anomalies">Anomalies</button>

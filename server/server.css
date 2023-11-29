@@ -112,7 +112,7 @@
     margin-top: 60%;
 }
 
-#puissancex{
+#axex{
     height: 80%;
     position: fixed;
     left: 1000px;
@@ -126,7 +126,7 @@
 	text-indent: 10px;
 }
 
-#puissancey{
+#axey{
     height: 80%;
     position: fixed;
     left: 250px;
@@ -140,7 +140,7 @@
 	text-indent: 10px;
 }
 
-#puissancez{
+#axez{
     height: 80%;
     position: fixed;
     left: 250px;
