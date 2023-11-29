@@ -73,12 +73,87 @@ var button5 = document.querySelector('#para');
             button5.style.color = "";
         });
 
-let A=[3,8,1,2,8];
-let B=[3,5,0,1,7];
-let C=[6,1,8,9,0];
+let A=[3,0,1,2,7];
+let B=[0,0,0,0,10];
+let C=[6,1,1,1,0];
 // animations boutons terminée. Maintenant on passe à l'affichage des graphiques et des canvas.
+function tabpui(){
 
+//definition des contexts, on choisi un affichage à deux dimensions
 
+    var ctx1 = document.getElementById('graphique1').getContext('2d');
+    var ctx2 = document.getElementById('graphique2').getContext('2d');
+    var ctx3 = document.getElementById('graphique3').getContext('2d');
+
+//ajout graphique 1
+    var graphique1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['A', 'B', 'C', 'D', 'E'],
+            datasets: [{
+                label: 'Axe Y',
+                data: A,
+                backgroundColor: 'rgba(255, 99, 12, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+//ajout graphique 2
+    var graphique2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['F', 'G', 'H', 'I', 'J'],
+            datasets: [{
+                label: 'Axe X',
+                data: B,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 0.5)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+//ajout graphique 3
+    var graphique3 = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['F', 'G', 'H', 'I', 'J'],
+            datasets: [{
+                label: 'Axe Z',
+                data: C,
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                borderColor: 'rgba(0, 0, 0, 0.5)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+   
+}
+
+tabpui();
 
 
 
