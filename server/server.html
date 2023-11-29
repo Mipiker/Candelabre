@@ -11,19 +11,28 @@
 <body>
     
     <div id="puissancex">
-        <canvas id="graphique1" width="40" height="30"></canvas>
+        <canvas id="graphique1" width="20" height="10"></canvas>
     </div>
 
     <div id="puissancey">
-        <canvas id="graphique2" width="40" height="30"></canvas>    
+        <canvas id="graphique2" width="20" height="10"></canvas>    
     </div>
+
+    <div id="puissancez">
+        <canvas id="graphique3" width="20" height="10"></canvas>    
+    </div>
+
+    <div id="appercu">
+        <canvas id="deviceview" width="20" height="10"></canvas>
+    </div>
+
    
 
     <div id=menu>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgpX5bLYHeHbQ3X2iCRLfyovvP_mA1B-6u6B0BhuCyZg&s" alt="image Rincent" height= 120 width="150">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgpX5bLYHeHbQ3X2iCRLfyovvP_mA1B-6u6B0BhuCyZg&s" alt="image Rincent" height= 120 width="160">
 
         <button id="amp">Amplitude Maximale</button>
-        <button id="pui">Puissance</button>
+        <button id="pui" onclick="afficherPuissance()">Puissance</button>
         <button id="frqmax" >Frequence Maximale</button>    
         
         <a href="anomalies.html" >
@@ -35,7 +44,10 @@
         <a href="parametre.html" >
             <button id="para">Setting</button>
         </a></div>
-    
+        
+    <table id="tabdevice">
+        <tr id="titleline"> <td>Appareils</td> <td>État</td> </tr>
+    </table >
  
     <script src ="server.js"></script>
    

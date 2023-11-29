@@ -5,20 +5,21 @@
     top: 0%;
     width: 150px;
     margin: 0 0 0 0;
-	padding: 4px 10px 30px 0px;
+	padding: 0px 10px 30px 0px;
     font-weight: bold;
     font-size: large;
     text-align: left;
 	text-indent: 0px;
 	color: rgb(255, 255, 255);
-    border-radius: 0px 25px 10px 10px;
+    border-radius: 0px 0px 10px 10px;
 	/* Générateur de code couleur -- http://www.workwithcolor.com/hsl-color-picker-01.htm */
-    background: hsla(19, 98%, 49%, 0.608)
+    background: hsla(0, 1%, 60%, 0.208)
   }
 
 
 #frqmax {
-    display: flex;
+    width: 160px;
+    height: 30px;
     font-size: 14px;
     text-align: center;
     text-decoration: none;
@@ -26,13 +27,15 @@
     color:rgb(8, 5, 0);
     border:transparent;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-top: 20%;
 
 }
 
 #pui {
-    display: flex;
+    width: 160px;
+    height: 30px;
+    padding: 0px 0px 0px 0px; 
     font-size: 14px;
     text-align: center;
     text-decoration: none;
@@ -40,14 +43,16 @@
     color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-top: 20%;
 
 }
 
 
 #amp {
-    display: flex;
+    width: 160px;
+    height: 30px;
+    display: center;
     font-size: 14px;
     text-align: center;
     text-decoration: none;
@@ -55,14 +60,16 @@
     color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-top: 20%;
     
 }
 
 
 #devices {
-    display: flex;
+    width: 160px;
+    height: 30px;
+    display: center;
     font-size: 14px;
     text-align: center;
     text-decoration: none;
@@ -70,13 +77,15 @@
     color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-top: 20%;
 
 
 }
 #anomalies {
-    display: flex;
+    width: 160px;
+    height: 30px;
+    display: center;
     font-size: 14px;
     text-align: center;
     text-decoration: none;
@@ -84,12 +93,14 @@
     color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-top: 100%;
 }
 
 #para {
-    display: flex;
+    width: 160px;
+    height: 30px;
+    display: center;
     font-size: 14px;
     text-align: center;
     text-decoration: none;
@@ -97,7 +108,7 @@
     color:rgb(0, 0, 0);
     border:transparent;
     background-color: transparent;
-    border-radius: 5px;
+    border-radius: 30px;
     margin-top: 60%;
 }
 
@@ -105,7 +116,7 @@
     height: 80%;
     position: fixed;
     left: 1000px;
-    top: 20%;
+    top: 10%;
     width: 500px;
     margin: 0 0 0 0;
 	padding: 10px 0px 10px 35px;
@@ -119,7 +130,7 @@
     height: 80%;
     position: fixed;
     left: 250px;
-    top: 20%;
+    top: 10%;
     width: 500px;
     margin: 0 0 0 0;
 	padding: 10px 0px 10px 35px;
@@ -129,4 +140,30 @@
 	text-indent: 10px;
 }
 
+#puissancez{
+    height: 80%;
+    position: fixed;
+    left: 250px;
+    top: 50%;
+    width: 500px;
+    margin: 0 0 0 0;
+	padding: 10px 0px 10px 35px;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+	text-indent: 10px;
+}
+#tabdevice{
+    height: 100px;
+    position: fixed;
+    left: 1100px;
+    top: 50%;
+    width: 300px;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
 
+#titleline{
+    font-weight:bold;
+}
