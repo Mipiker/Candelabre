@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>server1</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="server.css">
+</head>
+<body>
+    
+    <div id="puissancex">
+        <canvas id="graphique1" width="20" height="10"></canvas>
+    </div>
+
+    <div id="puissancey">
+        <canvas id="graphique2" width="20" height="10"></canvas>    
+    </div>
+
+    <div id="puissancez">
+        <canvas id="graphique3" width="20" height="10"></canvas>    
+    </div>
+
+    <div id="appercu">
+        <canvas id="deviceview" width="20" height="10"></canvas>
+    </div>
+
+   
+
+    <div id=menu>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgpX5bLYHeHbQ3X2iCRLfyovvP_mA1B-6u6B0BhuCyZg&s" alt="image Rincent" height= 120 width="160">
+
+        <button id="amp">Amplitude Maximale</button>
+        <button id="pui" onclick="afficherPuissance()">Puissance</button>
+        <button id="frqmax" >Frequence Maximale</button>    
+        
+        <a href="anomalies.html" >
+            <button id="anomalies">Anomalies</button>
+        </a>
+        <a href="devices.html" >
+            <button id="devices">Devices</button>
+        </a>
+        <a href="parametre.html" >
+            <button id="para">Setting</button>
+        </a></div>
+        
+    <table id="tabdevice">
+        <tr id="titleline"> <td>Appareils</td> <td>État</td> </tr>
+    </table >
+ 
+    <script src ="server.js"></script>
+   
+</body>
+</html>
