@@ -1,82 +1,24 @@
-//animations boutons
-var button = document.querySelector('#frqmax');
+import {afficherdevices} from './readLogManager.js'
+var Z=[0,0,0,0];
+var B=[0,0,0,0];
+var C=[0,0,0,0];
+afficherdevices()
+    .then(result => {
+        Z.push(result[3]);
+        B.push(result[4]);
+        C.push(result[5]);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+        tabpui();
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
 
-        // Ajouter un écouteur d'événement pour détecter le survol
-        button.addEventListener('mouseover', function() {
-            button.style.backgroundColor = " hsla(0, 1%, 60%, 0.608)";
-            button.style.color = "black";
-        });
 
-        // Ajouter un écouteur d'événement pour détecter la sortie du survol
-        button.addEventListener('mouseout', function() {
-            button.style.backgroundColor = "";
-            button.style.color = "";
-        });
 
-var button1 = document.querySelector('#pui');
-
-        button1.addEventListener('mouseover', function() {
-            button1.style.backgroundColor = "hsla(0, 1%, 60%, 0.608)";
-            button1.style.color = "black";
-        });
-
-        button1.addEventListener('mouseout', function() {
-            button1.style.backgroundColor = "";
-            button1.style.color = "";
-        });
-        
-    var button2 = document.querySelector('#amp');
-
-        button2.addEventListener('mouseover', function() {
-            button2.style.backgroundColor = "hsla(0, 1%, 60%, 0.608)";
-            button2.style.color = "black";
-        });
-
-        button2.addEventListener('mouseout', function() {
-            button2.style.backgroundColor = "";
-            button2.style.color = "";
-        });
-        
-var button3 = document.querySelector('#anomalies');
-
-        button3.addEventListener('mouseover', function() {
-            button3.style.backgroundColor = "hsla(0, 1%, 60%, 0.608)";
-            button3.style.color = "black";
-        });
-
-        button3.addEventListener('mouseout', function() {
-            button3.style.backgroundColor = "";
-            button3.style.color = "";
-        });
-
-var button4 = document.querySelector('#devices');
-
-        button4.addEventListener('mouseover', function() {
-            button4.style.backgroundColor = "hsla(0, 1%, 60%, 0.608)";
-            button4.style.color = "black";
-        });
-
-        button4.addEventListener('mouseout', function() {
-            button4.style.backgroundColor = "";
-            button4.style.color = ""; 
-        });
-        
-var button5 = document.querySelector('#para');
-
-        button5.addEventListener('mouseover', function() {
-            button5.style.backgroundColor = "hsla(0, 1%, 60%, 0.608)";
-            button5.style.color = "black";
-        });
-
-        button5.addEventListener('mouseout', function() {
-            button5.style.backgroundColor = "";
-            button5.style.color = "";
-        });
-
-let A=[3,0,1,2,7];
-let B=[0,0,0,0,10];
-let C=[6,1,1,1,0];
-// animations boutons terminée. Maintenant on passe à l'affichage des graphiques et des canvas.
 function tabpui(){
 
 //definition des contexts, on choisi un affichage à deux dimensions
@@ -92,7 +34,7 @@ function tabpui(){
             labels: ['A', 'B', 'C', 'D', 'E'],
             datasets: [{
                 label: 'Axe Y',
-                data: A,
+                data: Z,
                 backgroundColor: 'rgba(255, 99, 12, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 0.5)',
                 borderWidth: 1
@@ -153,7 +95,7 @@ function tabpui(){
    
 }
 
-tabpui();
+
 
 
 

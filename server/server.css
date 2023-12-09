@@ -167,3 +167,87 @@
 #titleline{
     font-weight:bold;
 }
+
+#frqmax {
+    background-color: transparent;
+    color: initial;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+#frqmax:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    color: black;
+  }
+
+#pui {
+    background-color: transparent;
+    color: initial;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+#pui:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    color: black;
+  }
+
+#amp {
+    background-color: transparent;
+    color: initial;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+#amp:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    color: black;
+  }
+
+#anomalies {
+    background-color: transparent;
+    color: initial;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+#anomalies:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    color: black;
+  }
+
+#devices {
+    background-color: transparent;
+    color: initial;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+#devices:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    color: black;
+  }
+
+#para {
+    background-color: transparent;
+    color: initial;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+#para:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    color: black;
+  }
