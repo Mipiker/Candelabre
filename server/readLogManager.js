@@ -1,5 +1,5 @@
-export function afficherdevices() {
-  return fetch('../log/0080E115000ACF0E.csv')
+export function afficherdevices(fileeui) {
+  return fetch(fileeui)
       .then(response => {
           if (!response.ok) {
               throw new Error('Erreur de chargement du fichier');

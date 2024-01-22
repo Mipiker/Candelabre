@@ -1,12 +1,73 @@
 import {afficherdevices} from './readLogManager.js'
-var Z=[0,0,0,0];
-var B=[0,0,0,0];
-var C=[0,0,0,0];
-afficherdevices()
+var Z=[];
+var B=[];
+var C=[];
+var Zo=[];
+var Bo=[];
+var Co=[];
+afficherdevices('../log/0080E115000A9B3C.csv')
+
     .then(result => {
         Z.push(result[3]);
         B.push(result[4]);
         C.push(result[5]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
+
+    afficherdevices('../log/0080E115000ADBE9.csv')
+
+    .then(result => {
+        Z.push(result[3]);
+        B.push(result[4]);
+        C.push(result[5]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
+
+afficherdevices('../log/0080E115000AC899.csv')
+
+    .then(result => {
+        Z.push(result[3]);
+        B.push(result[4]);
+        C.push(result[5]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
+
+afficherdevices('../log/0080E115000ACF0E.csv')
+
+ .then(result => {
+        Z.push(result[3]);
+        B.push(result[4]);
+        C.push(result[5]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
         console.log(Z);
         console.log(B);
         console.log(C);
@@ -16,8 +77,6 @@ afficherdevices()
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);
     });
-
-
 
 function tabpui(){
 
@@ -31,10 +90,10 @@ function tabpui(){
     var graphique1 = new Chart(ctx1, {
         type: 'bar',
         data: {
-            labels: ['A', 'B', 'C', 'D', 'E'],
+            labels: B,
             datasets: [{
                 label: 'Axe Y',
-                data: Z,
+                data: Bo,
                 backgroundColor: 'rgba(255, 99, 12, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 0.5)',
                 borderWidth: 1
@@ -53,10 +112,10 @@ function tabpui(){
     var graphique2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['F', 'G', 'H', 'I', 'J'],
+            labels: Z,
             datasets: [{
                 label: 'Axe X',
-                data: B,
+                data: Zo,
                 backgroundColor: 'rgba(54, 162, 235, 0.5)',
                 borderColor: 'rgba(54, 162, 235, 0.5)',
                 borderWidth: 1
@@ -75,10 +134,10 @@ function tabpui(){
     var graphique3 = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels: ['F', 'G', 'H', 'I', 'J'],
+            labels:C,
             datasets: [{
                 label: 'Axe Z',
-                data: C,
+                data: Co,
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 borderColor: 'rgba(0, 0, 0, 0.5)',
                 borderWidth: 1
@@ -94,7 +153,6 @@ function tabpui(){
     });
    
 }
-
 
 
 
