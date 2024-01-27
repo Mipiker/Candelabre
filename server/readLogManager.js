@@ -1,4 +1,4 @@
-export function afficherdevices(fileeui) {
+export async function afficherdevices(fileeui) {
   return fetch(fileeui)
       .then(response => {
           if (!response.ok) {

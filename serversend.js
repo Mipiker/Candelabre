@@ -7,9 +7,14 @@ app.listen(port, () => {
 });
 
 
-
-
-app.use(express.static('./log')); 
+app.use(express.static('./server')); 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/log/0080E115000A9B3C.csv');
+    res.sendFile(__dirname + '/server/server.html');
+  });
+
+
+  app.use('/log', express.static('./log'));
+
+  app.get('/log', (req, res) => {
+    res.sendFile(path.join(__dirname, '/log'));
   });
