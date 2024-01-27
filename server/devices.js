@@ -1,7 +1,7 @@
 import {csvJSON} from './readLogManager.js'
 
 document.addEventListener("DOMContentLoaded", function () {
-    generateEUIList("dynamic-list-container");
+    generateEUIList("dynamic-device-list");
 });
 
 // Generate the device list dynamically from the file devices.csv
@@ -16,8 +16,15 @@ async function generateEUIList(containerId) {
     for(const device of devices) {
         var li = document.createElement("li");
         li.textContent = device.EUI;
+        li.addEventListener("click", function() {
+            deviceClicked(device)
+        });
         ul.appendChild(li);
     }
 
     container.appendChild(ul);
+}
+
+function deviceClicked(device) {
+   console.log(device);
 }
