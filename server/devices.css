@@ -1,0 +1,14 @@
+.list-appareils {
+    position: absolute;
+    left: 20%;
+    top: 50px;
+}
+
+.list-appareils ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list-appareils li {
+    margin-bottom: 10px;
+}

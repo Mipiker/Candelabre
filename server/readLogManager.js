@@ -1,3 +1,4 @@
+// Return the last line of a CSV file
 export async function afficherdevices(fileeui) {
   return fetch(fileeui)
       .then(response => {
@@ -17,8 +18,23 @@ export async function afficherdevices(fileeui) {
       })
       .catch(error => {
           console.error('Erreur :', error);
-          throw error; // Propager l'erreur pour la gérer en dehors de cette fonction
+          throw error;
       });
 }
 
-
+// Return a JSON from a CSV file
+export async function csvJSON(fileEUI){
+    var csv = await (await fetch(fileEUI)).text();
+    var lines = csv.split("\r\n");
+    var result = [];
+    var headers = lines[0].split(",");
+    for(var i=1; i<lines.length; i++){
+        var obj = {};
+        var currentline=lines[i].split(",");
+        for(var j=0; j<headers.length; j++){
+            obj[headers[j]] = currentline[j];
+        }
+        result.push(obj);
+    }
+    return result;
+  }
