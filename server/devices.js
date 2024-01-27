@@ -1,5 +1,8 @@
 import {csvJSON} from './readLogManager.js'
 
+var selectedDevice = document.getElementById('device-selection');
+var lastConnection = document.createElement("p");
+
 document.addEventListener("DOMContentLoaded", function () {
     generateEUIList("dynamic-device-list");
 });
@@ -25,6 +28,11 @@ async function generateEUIList(containerId) {
     container.appendChild(ul);
 }
 
-function deviceClicked(device) {
-   console.log(device);
+async function deviceClicked(device) {
+    console.log(device);
+    var deviceInfo = document.getElementById('device-info');
+    var deviceLog = await csvJSON(`../log/${device.EUI}.csv`)
+    selectedDevice.textContent = `Informations de l'appareil ${device.EUI}`;
+    lastConnection.textContent = `Dernière connection le ${deviceLog.slice(-1)[0].date}`;
+    deviceInfo.appendChild(lastConnection);
 }

@@ -25,13 +25,16 @@ export async function afficherdevices(fileeui) {
 // Return a JSON from a CSV file
 export async function csvJSON(fileEUI){
     var csv = await (await fetch(fileEUI)).text();
-    var lines = csv.split("\r\n");
+    let lines = csv.split("\r\n");
+    if(lines.slice(-1) == '') {
+        lines = lines.slice(0, -1);
+    }
     var result = [];
     var headers = lines[0].split(",");
     for(var i=1; i<lines.length; i++){
         var obj = {};
         var currentline=lines[i].split(",");
-        for(var j=0; j<headers.length; j++){
+        for(var j=0; j<headers.length; j++) {
             obj[headers[j]] = currentline[j];
         }
         result.push(obj);
