@@ -6,7 +6,10 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-app.use(express.static('./server')); 
+
+
+
+app.use(express.static('./log')); 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/server/server.html');
+    res.sendFile(__dirname + '/log/0080E115000A9B3C.csv');
   });
