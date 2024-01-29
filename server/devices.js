@@ -3,6 +3,33 @@ import {csvJSON} from './readLogManager.js'
 var selectedDevice = document.getElementById('device-selection');
 var lastConnection = document.createElement("p");
 
+var ctx1 = document.getElementById('average-chart').getContext('2d');
+
+var graph = new Chart(ctx1, {
+    type: 'line',
+    data: {
+        labels: [''],
+        datasets: [{
+            label: 'Moyenne X',
+            data: [],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderWidth: 0
+        },
+        {
+            label: 'Moyenne Y',
+            data: [],
+            backgroundColor: 'rgba(255, 99, 12, 0.5)',
+            borderWidth: 0
+        },
+        {
+            label: 'Moyenne Z',
+            data: [],
+            backgroundColor: 'rgba(243, 128, 255, 0.8)',
+            borderWidth: 0
+        }],
+    }
+});
+
 // When the page is loaded
 document.addEventListener("DOMContentLoaded", async function () {
     // Generate the device list
