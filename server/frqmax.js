@@ -1,12 +1,84 @@
+import {afficherdevices} from './readLogManager.js'
+var Z=[];
+var B=[];
+var C=[];
+var Zo=[];
+var Bo=[];
+var Co=[];
+afficherdevices('../log/0080E115000A9B3C.csv')
 
+    .then(result => {
+        Z.push(result[12]);
+        B.push(result[13]);
+        C.push(result[14]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
 
+    afficherdevices('../log/0080E115000ADBE9.csv')
 
+    .then(result => {
+        Z.push(result[12]);
+        B.push(result[13]);
+        C.push(result[14]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
 
-        
-let A=[6,0,0,0,1];
-let B=[1,0,15,0,1];
-let C=[0,0,1,0,0];
-function tabfrqmax(){
+afficherdevices('../log/0080E115000AC899.csv')
+
+    .then(result => {
+        Z.push(result[12]);
+        B.push(result[13]);
+        C.push(result[14]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
+
+afficherdevices('../log/0080E115000ACF0E.csv')
+
+ .then(result => {
+    Z.push(result[12]);
+    B.push(result[13]);
+    C.push(result[14]);
+        Zo.push(1);
+        Bo.push(1);
+        Co.push(1);
+        console.log(Z);
+        console.log(B);
+        console.log(C);
+        tabamp();
+       
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'affichage des devices :', error);
+    });
+
+function tabamp(){
 
 //definition des contexts, on choisi un affichage à deux dimensions
 
@@ -18,10 +90,10 @@ function tabfrqmax(){
     var graphique1 = new Chart(ctx1, {
         type: 'bar',
         data: {
-            labels: ['A', 'B', 'C', 'D', 'E'],
+            labels: B,
             datasets: [{
                 label: 'Axe Y',
-                data: A,
+                data: Bo,
                 backgroundColor: 'rgba(255, 99, 12, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 0.5)',
                 borderWidth: 1
@@ -40,10 +112,10 @@ function tabfrqmax(){
     var graphique2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['F', 'G', 'H', 'I', 'J'],
+            labels: Z,
             datasets: [{
                 label: 'Axe X',
-                data: B,
+                data: Zo,
                 backgroundColor: 'rgba(54, 162, 235, 0.5)',
                 borderColor: 'rgba(54, 162, 235, 0.5)',
                 borderWidth: 1
@@ -62,10 +134,10 @@ function tabfrqmax(){
     var graphique3 = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels: ['F', 'G', 'H', 'I', 'J'],
+            labels:C,
             datasets: [{
                 label: 'Axe Z',
-                data: C,
+                data: Co,
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 borderColor: 'rgba(0, 0, 0, 0.5)',
                 borderWidth: 1
@@ -82,7 +154,7 @@ function tabfrqmax(){
    
 }
 
-tabfrqmax();
+
 
 
 
