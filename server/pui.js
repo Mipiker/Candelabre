@@ -1,4 +1,5 @@
 import {afficherdevices} from './readLogManager.js'
+
 var Z=[];
 var B=[];
 var C=[];
@@ -7,7 +8,7 @@ var Bo=[];
 var Co=[];
 var a=1;
 
-
+// création des listes pour les camamberts en arrondissant les valeurs et en ajustant l'arrondi:a 
 function ajoutlisteZ(nb){
     let around = Math.round(nb/a)*a;
     let index = Z.indexOf(around);
@@ -20,7 +21,7 @@ function ajoutlisteZ(nb){
     }
 }
 
-f
+
 function ajoutlisteB(nb){
     let around = Math.round(nb/a)*a;
     let index = B.indexOf(around);
@@ -66,8 +67,7 @@ etat.innerHTML = "Connecté";
 }
 
 
-
-
+// ajout des listes dans les devices 
 afficherdevices('../log/0080E115000A9B3C.csv')
 
     .then(result => {
@@ -80,7 +80,7 @@ afficherdevices('../log/0080E115000A9B3C.csv')
         console.error('Erreur lors de l\'affichage des devices :', error);
     });
 
-    afficherdevices('../log/0080E115000ADBE9.csv')
+afficherdevices('../log/0080E115000ADBE9.csv')
 
     .then(result => {
         ajoutlisteZ(result[3]);
@@ -114,6 +114,9 @@ afficherdevices('../log/0080E115000ACF0E.csv')
         console.error('Erreur lors de l\'affichage des devices :', error);
     });
 
+
+
+// fonction qui affiche les camemberts 
 function tabpui(){
 
 //definition des contexts, on choisi un affichage à deux dimensions
@@ -122,7 +125,6 @@ function tabpui(){
     var ctx2 = document.getElementById('graphique2').getContext('2d');
     var ctx3 = document.getElementById('graphique3').getContext('2d');
 
-//ajout graphique 1
     var graphique1 = new Chart(ctx1, {
         type: 'bar',
         data: {
@@ -144,7 +146,6 @@ function tabpui(){
         }
     });
 
-//ajout graphique 2
     var graphique2 = new Chart(ctx2, {
         type: 'bar',
         data: {
@@ -166,7 +167,7 @@ function tabpui(){
         }
     });
 
-//ajout graphique 3
+    
     var graphique3 = new Chart(ctx3, {
         type: 'bar',
         data: {
@@ -189,8 +190,6 @@ function tabpui(){
     });
    
 }
-
-
 
 
 
