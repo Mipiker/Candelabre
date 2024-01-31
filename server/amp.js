@@ -5,42 +5,40 @@ var C=[];
 var Zo=[];
 var Bo=[];
 var Co=[];
-
+var a=10;
 function ajoutlisteZ(nb){
-    let around = Math.around(nb);
-    for (let i=0; i<Z.length; i++){
-        if(around==Z[i]){
-            Zo[i]++;
-        }
-        else{
-            Z.push(around);
-            Zo.push(1);
-        }
+    let around = Math.round(nb/a)*a;
+    let index = Z.indexOf(around);
+
+    if (index !== -1) {
+        Zo[index]++;
+    } else {
+        Z.push(around);
+        Zo.push(1);
     }
 }
 
 function ajoutlisteB(nb){
-    for (let i=0; i<B.length; i++){
-        if(around==B[i]){
-            Bo[i]++;
-        }
-        else{
-            B.push(around);
-            Bo.push(1);
-        }
+    let around = Math.round(nb/a)*a;
+    let index = B.indexOf(around);
+
+    if (index !== -1) {
+        Bo[index]++;
+    } else {
+        B.push(around);
+        Bo.push(1);
     }
 }
 
 function ajoutlisteC(nb){
-     
-    for (let i=0; i<C.length; i++){
-        if(around==C[i]){
-            Co[i]++;
-        }
-        else{
-            C.push(around);
-            Co.push(1);
-        }
+    let around = Math.round(nb/a)*a;
+    let index = C.indexOf(around);
+
+    if (index !== -1) {
+        Co[index]++;
+    } else {
+        C.push(around);
+        Co.push(1);
     }
 }
 
@@ -48,7 +46,7 @@ function ajoutlisteC(nb){
 afficherdevices('../log/0080E115000A9B3C.csv')
 
     .then(result => {
-        ajoutligneZ(result[9]);
+        ajoutlisteZ(result[9]);
         ajoutlisteB(result[10]);
         ajoutlisteC(result[11]);
      
@@ -85,8 +83,7 @@ afficherdevices('../log/0080E115000ACF0E.csv')
     ajoutlisteZ(result[9]);
     ajoutlisteB(result[10]);
     ajoutlisteC(result[11]);
-        tabamp();
-       
+    tabamp();       
     })
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);

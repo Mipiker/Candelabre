@@ -5,19 +5,51 @@ var C=[];
 var Zo=[];
 var Bo=[];
 var Co=[];
+var a=1;
+function ajoutlisteZ(nb){
+    let around = Math.round(nb/a)*a;
+    let index = Z.indexOf(around);
+
+    if (index !== -1) {
+        Zo[index]++;
+    } else {
+        Z.push(around);
+        Zo.push(1);
+    }
+}
+
+function ajoutlisteB(nb){
+    let around = Math.round(nb/a)*a;
+    let index = B.indexOf(around);
+
+    if (index !== -1) {
+        Bo[index]++;
+    } else {
+        B.push(around);
+        Bo.push(1);
+    }
+}
+
+function ajoutlisteC(nb){
+    let around = Math.round(nb/a)*a;
+    let index = C.indexOf(around);
+
+    if (index !== -1) {
+        Co[index]++;
+    } else {
+        C.push(around);
+        Co.push(1);
+    }
+}
+
+
 afficherdevices('../log/0080E115000A9B3C.csv')
 
     .then(result => {
-        Z.push(result[12]);
-        B.push(result[13]);
-        C.push(result[14]);
-        Zo.push(1);
-        Bo.push(1);
-        Co.push(1);
-        console.log(Z);
-        console.log(B);
-        console.log(C);
-       
+        ajoutlisteZ(result[12]);
+        ajoutlisteB(result[13]);
+        ajoutlisteC(result[14]);
+     
     })
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);
@@ -26,16 +58,9 @@ afficherdevices('../log/0080E115000A9B3C.csv')
     afficherdevices('../log/0080E115000ADBE9.csv')
 
     .then(result => {
-        Z.push(result[12]);
-        B.push(result[13]);
-        C.push(result[14]);
-        Zo.push(1);
-        Bo.push(1);
-        Co.push(1);
-        console.log(Z);
-        console.log(B);
-        console.log(C);
-       
+        ajoutlisteZ(result[12]);
+        ajoutlisteB(result[13]);
+        ajoutlisteC(result[14]);
     })
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);
@@ -44,16 +69,9 @@ afficherdevices('../log/0080E115000A9B3C.csv')
 afficherdevices('../log/0080E115000AC899.csv')
 
     .then(result => {
-        Z.push(result[12]);
-        B.push(result[13]);
-        C.push(result[14]);
-        Zo.push(1);
-        Bo.push(1);
-        Co.push(1);
-        console.log(Z);
-        console.log(B);
-        console.log(C);
-       
+        ajoutlisteZ(result[12]);
+        ajoutlisteB(result[13]);
+        ajoutlisteC(result[14]);
     })
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);
@@ -62,17 +80,10 @@ afficherdevices('../log/0080E115000AC899.csv')
 afficherdevices('../log/0080E115000ACF0E.csv')
 
  .then(result => {
-    Z.push(result[12]);
-    B.push(result[13]);
-    C.push(result[14]);
-        Zo.push(1);
-        Bo.push(1);
-        Co.push(1);
-        console.log(Z);
-        console.log(B);
-        console.log(C);
-        tabamp();
-       
+    ajoutlisteZ(result[12]);
+    ajoutlisteB(result[13]);
+    ajoutlisteC(result[14]);
+    tabamp();       
     })
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);
