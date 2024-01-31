@@ -6,6 +6,8 @@ var Zo=[];
 var Bo=[];
 var Co=[];
 var a=1;
+
+
 function ajoutlisteZ(nb){
     let around = Math.round(nb/a)*a;
     let index = Z.indexOf(around);
@@ -18,6 +20,7 @@ function ajoutlisteZ(nb){
     }
 }
 
+f
 function ajoutlisteB(nb){
     let around = Math.round(nb/a)*a;
     let index = B.indexOf(around);
@@ -30,6 +33,7 @@ function ajoutlisteB(nb){
     }
 }
 
+
 function ajoutlisteC(nb){
     let around = Math.round(nb/a)*a;
     let index = C.indexOf(around);
@@ -41,6 +45,27 @@ function ajoutlisteC(nb){
         Co.push(1);
     }
 }
+
+
+//ajout de ligne dans notre tableau de page
+
+function ajoutLigneTableau(EUI,n){
+    var table = document.getElementById("tabdevice");
+
+// on met à la ligne qu'on veut les éléments qu'on cherche à introduire
+var row = table.insertRow(n);
+
+// on crée nos variables qui vont entrer dans les cellules
+var appareil = row.insertCell(0);
+var etat = row.insertCell(1);
+
+// on met le contenu des colonnes
+appareil.innerHTML = EUI;
+etat.innerHTML = "Connecté";
+
+}
+
+
 
 
 afficherdevices('../log/0080E115000A9B3C.csv')
@@ -83,13 +108,13 @@ afficherdevices('../log/0080E115000ACF0E.csv')
     ajoutlisteZ(result[3]);
     ajoutlisteB(result[4]);
     ajoutlisteC(result[5]);
-    tabamp();       
+    tabpui();       
     })
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);
     });
 
-function tabamp(){
+function tabpui(){
 
 //definition des contexts, on choisi un affichage à deux dimensions
 
@@ -169,23 +194,6 @@ function tabamp(){
 
 
 
-//ajout de ligne dans notre tableau de page
-
-function ajoutLigneTableau(EUI,n){
-    var table = document.getElementById("tabdevice");
-
-// on met à la ligne qu'on veut les éléments qu'on cherche à introduire
-var row = table.insertRow(n);
-
-// on crée nos variables qui vont entrer dans les cellules
-var appareil = row.insertCell(0);
-var etat = row.insertCell(1);
-
-// on met le contenu des colonnes
-appareil.innerHTML = EUI;
-etat.innerHTML = "Connecté";
-
-}
 
 ajoutLigneTableau("561451514545465",1);
 ajoutLigneTableau("536144545645644",2);

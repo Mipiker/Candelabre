@@ -1,11 +1,14 @@
 import {afficherdevices} from './readLogManager.js'
+
 var Z=[];
 var B=[];
 var C=[];
 var Zo=[];
 var Bo=[];
 var Co=[];
-var a=10;
+var a=1;
+
+// création des listes pour les camamberts en arrondissant les valeurs et en ajustant l'arrondi:a 
 function ajoutlisteZ(nb){
     let around = Math.round(nb/a)*a;
     let index = Z.indexOf(around);
@@ -18,6 +21,7 @@ function ajoutlisteZ(nb){
     }
 }
 
+
 function ajoutlisteB(nb){
     let around = Math.round(nb/a)*a;
     let index = B.indexOf(around);
@@ -29,6 +33,7 @@ function ajoutlisteB(nb){
         Bo.push(1);
     }
 }
+
 
 function ajoutlisteC(nb){
     let around = Math.round(nb/a)*a;
@@ -43,6 +48,26 @@ function ajoutlisteC(nb){
 }
 
 
+//ajout de ligne dans notre tableau de page
+
+function ajoutLigneTableau(EUI,n){
+    var table = document.getElementById("tabdevice");
+
+// on met à la ligne qu'on veut les éléments qu'on cherche à introduire
+var row = table.insertRow(n);
+
+// on crée nos variables qui vont entrer dans les cellules
+var appareil = row.insertCell(0);
+var etat = row.insertCell(1);
+
+// on met le contenu des colonnes
+appareil.innerHTML = EUI;
+etat.innerHTML = "Connecté";
+
+}
+
+
+// ajout des listes dans les devices 
 afficherdevices('../log/0080E115000A9B3C.csv')
 
     .then(result => {
@@ -55,7 +80,7 @@ afficherdevices('../log/0080E115000A9B3C.csv')
         console.error('Erreur lors de l\'affichage des devices :', error);
     });
 
-    afficherdevices('../log/0080E115000ADBE9.csv')
+afficherdevices('../log/0080E115000ADBE9.csv')
 
     .then(result => {
         ajoutlisteZ(result[9]);
@@ -89,6 +114,9 @@ afficherdevices('../log/0080E115000ACF0E.csv')
         console.error('Erreur lors de l\'affichage des devices :', error);
     });
 
+
+
+// fonction qui affiche les camemberts 
 function tabamp(){
 
 //definition des contexts, on choisi un affichage à deux dimensions
@@ -97,7 +125,6 @@ function tabamp(){
     var ctx2 = document.getElementById('graphique2').getContext('2d');
     var ctx3 = document.getElementById('graphique3').getContext('2d');
 
-//ajout graphique 1
     var graphique1 = new Chart(ctx1, {
         type: 'bar',
         data: {
@@ -119,7 +146,6 @@ function tabamp(){
         }
     });
 
-//ajout graphique 2
     var graphique2 = new Chart(ctx2, {
         type: 'bar',
         data: {
@@ -141,7 +167,7 @@ function tabamp(){
         }
     });
 
-//ajout graphique 3
+    
     var graphique3 = new Chart(ctx3, {
         type: 'bar',
         data: {
@@ -167,25 +193,6 @@ function tabamp(){
 
 
 
-
-
-//ajout de ligne dans notre tableau de page
-
-function ajoutLigneTableau(EUI,n){
-    var table = document.getElementById("tabdevice");
-
-// on met à la ligne qu'on veut les éléments qu'on cherche à introduire
-var row = table.insertRow(n);
-
-// on crée nos variables qui vont entrer dans les cellules
-var appareil = row.insertCell(0);
-var etat = row.insertCell(1);
-
-// on met le contenu des colonnes
-appareil.innerHTML = EUI;
-etat.innerHTML = "Connecté";
-
-}
 
 ajoutLigneTableau("561451514545465",1);
 ajoutLigneTableau("536144545645644",2);

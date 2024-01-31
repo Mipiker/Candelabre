@@ -6,6 +6,9 @@ var Zo=[];
 var Bo=[];
 var Co=[];
 var a=1;
+
+
+
 function ajoutlisteZ(nb){
     let around = Math.round(nb/a)*a;
     let index = Z.indexOf(around);
@@ -41,6 +44,9 @@ function ajoutlisteC(nb){
         Co.push(1);
     }
 }
+
+
+
 
 
 afficherdevices('../log/0080E115000A9B3C.csv')
@@ -83,13 +89,13 @@ afficherdevices('../log/0080E115000ACF0E.csv')
     ajoutlisteZ(result[12]);
     ajoutlisteB(result[13]);
     ajoutlisteC(result[14]);
-    tabamp();       
+    tabfrqmax();       
     })
     .catch(error => {
         console.error('Erreur lors de l\'affichage des devices :', error);
     });
 
-function tabamp(){
+function tabfrqmax(){
 
 //definition des contexts, on choisi un affichage à deux dimensions
 
