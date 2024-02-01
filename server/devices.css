@@ -1,16 +1,16 @@
-.list-appareils {
+.dynamic-device-list {
     position: absolute;
     left: 250px;
     top: 50px;
 }
 
-.list-appareils ul {
+.dynamic-device-list ul {
     list-style: none;
     cursor: pointer;
     padding: 0;
 }
 
-.list-appareils li:hover {
+.dynamic-device-list li:hover {
     background-color: hsla(0, 1%, 60%, 0.608);
     border-radius: 15px;
     padding-left: 10px;
@@ -18,7 +18,7 @@
     width: 150px;
 }
 
-.list-appareils li {
+.dynamic-device-list li {
     margin-bottom: 5px;
     border-radius: 15px;
     padding-left: 10px;
@@ -31,12 +31,11 @@
     position: absolute;
     left: 50%;
     top: 50px;
-}
-
-.device-chart {
-    position:absolute;
-    left: 50%;
-    top: 50%;
     width: 40%;
     height: 40%
+}
+
+.device-info canvas {
+    position:relative;
+    top: 50%; 
 }

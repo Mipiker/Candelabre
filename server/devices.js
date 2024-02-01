@@ -1,39 +1,11 @@
 import {csvJSON} from './readLogManager.js'
 
-var selectedDevice = document.getElementById('device-selection');
-var lastConnection = document.createElement("p");
-
-var ctx1 = document.getElementById('average-chart').getContext('2d');
-
-var graph = new Chart(ctx1, {
-    type: 'line',
-    data: {
-        labels: [''],
-        datasets: [{
-            label: 'Moyenne X',
-            data: [],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderWidth: 0
-        },
-        {
-            label: 'Moyenne Y',
-            data: [],
-            backgroundColor: 'rgba(255, 99, 12, 0.5)',
-            borderWidth: 0
-        },
-        {
-            label: 'Moyenne Z',
-            data: [],
-            backgroundColor: 'rgba(243, 128, 255, 0.8)',
-            borderWidth: 0
-        }],
-    }
-});
+var chart;
 
 // When the page is loaded
 document.addEventListener("DOMContentLoaded", async function () {
     // Generate the device list
-    await generateEUIList();
+    await generateDeviceList();
     // Preselect a device is needed
     const urlParams = new URLSearchParams(window.location.search);
     const selectedDeviceEUI = urlParams.get('deviceEUI');
@@ -43,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 // Generate the device list dynamically from the file devices.csv when the page is loaded
-async function generateEUIList() {
+async function generateDeviceList() {
     var devices = await csvJSON('../log/devices.csv');
     var container = document.getElementById("dynamic-device-list");
     var ul = document.createElement("ul");
@@ -60,12 +32,70 @@ async function generateEUIList() {
 
 // Display the device informations when selected
 async function deviceSelected(device) {
-    var deviceInfo = document.getElementById('device-info');
     var deviceLog = await csvJSON(`../log/${device.EUI}.csv`)
-    selectedDevice.textContent = `Informations de l'appareil ${device.EUI}`;
-    lastConnection.textContent = `Dernière connection le ${deviceLog.slice(-1)[0].date}`;
-    deviceInfo.appendChild(lastConnection);
+    document.getElementById('selected-device').textContent = `Informations de l'appareil ${device.EUI}`;
+    document.getElementById("selected-device-last-connection").textContent = `Dernière connection le ${deviceLog.slice(-1)[0].date}`;
     updateURLParameter('deviceEUI', device.EUI);
+
+    var XAxis = [];
+    var averageX = [];
+    var averageY = [];
+    var averageZ = [];
+    for(const log of deviceLog) {
+        XAxis.push(moment(log.date, 'DD/MM/YYYY HH:mm:ss').toDate());
+        averageX.push(log.avgX);
+        averageY.push(log.avgY);
+        averageZ.push(log.avgZ);
+    }
+    const chartData = {
+        labels: XAxis,
+        datasets: [{
+            label: 'Accélération X',
+            data: averageX, 
+            borderColor: 'rgba(54, 162, 235, 0.5)',
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        },
+        {
+            label: 'Accélération Y',
+            data: averageY,
+            borderColor: 'rgba(255, 99, 12, 0.5)',
+            backgroundColor: 'rgba(255, 99, 12, 0.5)',
+        },
+        {
+            label: 'Accélération Z',
+            data: averageZ,
+            borderColor: 'rgba(243, 128, 255, 0.8)',
+            backgroundColor: 'rgba(243, 128, 255, 0.8)',
+        }]
+    }
+    if(chart) {
+        chart.data = chartData;
+        chart.update();
+    } else {
+        chart = new Chart(document.getElementById('average-chart').getContext('2d'), {
+            type: 'line',
+            data: chartData,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Accéleration moyenne',
+                        font: {
+                            size: 20
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        grid: {
+                            display:false
+                        }
+                    }
+                }
+            }
+        });
+    }
 }
 
 // Preselect the device based on the URL parameter
