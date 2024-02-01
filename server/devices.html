@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Appareils</title>
+    <link rel="stylesheet" href="server.css">
+    <link rel="stylesheet" href="devices.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+    <script type="module" src="devices.js"></script>
 </head>
 <body>
+
+    <div id=menu>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgpX5bLYHeHbQ3X2iCRLfyovvP_mA1B-6u6B0BhuCyZg&s" alt="image Rincent" height= 120 width="160">
+        <a href="pui.html" >
+            <button id="pui">Puissance</button>
+        </a>
+        <a href="amp.html" >
+            <button id="amp">Amplitude Maximale</button>
+        </a> 
+        <a href="frqmax.html" >
+            <button id="frqmax">Frequence Maximale</button>    
+        </a>
+        <a href="anomalies.html" >
+            <button id="anomalies">Anomalies</button>
+        </a>
+        <a href="devices.html" >
+            <button id="devices">Devices</button>
+        </a>
+        <a href="parametre.html" >
+            <button id="para">Setting</button>
+        </a>
+    </div>
+
+    <div id="dynamic-device-list" class="dynamic-device-list">
+        <h2>Liste des appareils</h2>
+    </div>
+
+    <div id="device-info" class="device-info">
+        <h2 id="selected-device">Pas d'appareil sélectionné</h2>
+        <p id="selected-device-last-connection"></p>
+        <canvas id="average-chart"></canvas>
+    </div>
     
 </body>
 </html>
