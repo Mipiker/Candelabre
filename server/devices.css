@@ -1,0 +1,41 @@
+.dynamic-device-list {
+    position: absolute;
+    left: 250px;
+    top: 50px;
+}
+
+.dynamic-device-list ul {
+    list-style: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.dynamic-device-list li:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    border-radius: 15px;
+    padding-left: 10px;
+    margin-left: -10px;
+    width: 150px;
+}
+
+.dynamic-device-list li {
+    margin-bottom: 5px;
+    border-radius: 15px;
+    padding-left: 10px;
+    margin-left: -10px;
+    width: 150px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.device-info {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    width: 40%;
+    height: 40%
+}
+
+.device-info canvas {
+    position:relative;
+    top: 50%; 
+}
