@@ -66,55 +66,88 @@ etat.innerHTML = "Connecté";
 
 }
 
+function diviserEnPlages(liste, nombreDePlages) {
+    // Trouver la valeur minimale et maximale dans la liste
+    const min = Math.min(...liste);
+    const max = Math.max(...liste);
+
+    // Calculer la largeur de chaque plage
+    const largeurPlage = (max - min+1) / nombreDePlages;
+
+    // Initialiser les listes de plages et de comptages
+    const plages = [];
+    const compteurs = new Array(nombreDePlages).fill(0);
+
+    // Remplir la liste des plages
+    for (let i = 0; i < nombreDePlages; i++) {
+        const plageMin = min + i * largeurPlage;
+        const plageMax = min + (i + 1) * largeurPlage;
+        plages.push([plageMin, plageMax]);
+    }
+
+    // Compter le nombre de valeurs dans chaque plage
+    for (const valeur of liste) {
+        for (let i = 0; i < nombreDePlages; i++) {
+            if (valeur >= plages[i][0] && valeur < plages[i][1]) {
+                compteurs[i]++;
+                break;  // Une valeur ne peut appartenir qu'à une seule plage
+            }
+        }
+    }
+
+    return { plages, compteurs };
+}
+
 
 // ajout des listes dans les devices 
-afficherdevices('../log/0080E115000A9B3C.csv')
+try {
+    const result = await afficherdevices('../log/0080E115000A9B3C.csv');
+    Z.push(result[3]);
+    B.push(result[4]);
+    C.push(result[5]);
 
-    .then(result => {
-        ajoutlisteZ(result[3]);
-        ajoutlisteB(result[4]);
-        ajoutlisteC(result[5]);
-     
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
 
-afficherdevices('../log/0080E115000ADBE9.csv')
+try {
+    const result = await afficherdevices('../log/0080E115000ADBE9.csv');
+    Z.push(result[3]);
+    B.push(result[4]);
+    C.push(result[5]);
 
-    .then(result => {
-        ajoutlisteZ(result[3]);
-        ajoutlisteB(result[4]);
-        ajoutlisteC(result[5]);
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
 
-afficherdevices('../log/0080E115000AC899.csv')
-
-    .then(result => {
-        ajoutlisteZ(result[3]);
-        ajoutlisteB(result[4]);
-        ajoutlisteC(result[5]);
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
-
-afficherdevices('../log/0080E115000ACF0E.csv')
-
- .then(result => {
-    ajoutlisteZ(result[3]);
-    ajoutlisteB(result[4]);
-    ajoutlisteC(result[5]);
-    tabpui();       
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
+try {
+    const result = await afficherdevices('../log/0080E115000AC899.csv');
+    Z.push(result[3]);
+    B.push(result[4]);
+    C.push(result[5]);
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
 
 
+
+try {
+    const result = await afficherdevices('../log/0080E115000ACF0E.csv');
+    Z.push(result[3]);
+    B.push(result[4]);
+    C.push(result[5]);
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
+
+var Cnew=diviserEnPlages(C, 10).plages;
+var Bnew=diviserEnPlages(B, 10).plages;
+var Znew=diviserEnPlages(Z, 10).plages;
+Co=diviserEnPlages(C, 10).compteurs;
+Bo=diviserEnPlages(B, 10).compteurs;
+Zo=diviserEnPlages(Z, 10).compteurs;
+
+tabpui();
 
 // fonction qui affiche les camemberts 
 function tabpui(){
@@ -128,7 +161,7 @@ function tabpui(){
     var graphique1 = new Chart(ctx1, {
         type: 'bar',
         data: {
-            labels: B,
+            labels: Bnew,
             datasets: [{
                 label: 'Axe Y',
                 data: Bo,
@@ -138,7 +171,25 @@ function tabpui(){
             }]
         },
         options: {
+            plugins: {
+                title:{
+                    display: true,
+                    text:"Puissance selon l'axe y"
+                }
+            },
             scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                    },
+                    ticks: {
+                        callback: function(value, index, values) {
+                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
+                            return  value; // Exemple: Ajouter "Mois" devant chaque étiquette
+                        }
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }
@@ -149,7 +200,7 @@ function tabpui(){
     var graphique2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: Z,
+            labels: Znew,
             datasets: [{
                 label: 'Axe X',
                 data: Zo,
@@ -159,7 +210,25 @@ function tabpui(){
             }]
         },
         options: {
+            plugins: {
+                title:{
+                    display: true,
+                    text:"Puissance selon l'axe x"
+                }
+            },
             scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
+                            return  value; // Exemple: Ajouter "Mois" devant chaque étiquette
+                        }
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }
@@ -171,7 +240,7 @@ function tabpui(){
     var graphique3 = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels:C,
+            labels:Cnew,
             datasets: [{
                 label: 'Axe Z',
                 data: Co,
@@ -181,10 +250,29 @@ function tabpui(){
             }]
         },
         options: {
+            plugins: {
+                title:{
+                    display: true,
+                    text:"Puissance selon l'axe z"
+                }
+            },
             scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                    },
+                    ticks: {
+                        callback: function(value, index, values) {
+                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
+                            return; // Exemple: Ajouter "Mois" devant chaque étiquette
+                        }
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }
+                
             }
         }
     });

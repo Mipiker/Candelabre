@@ -8,44 +8,42 @@ var Bo=[];
 var Co=[];
 var a=1;
 
-// création des listes pour les camamberts en arrondissant les valeurs et en ajustant l'arrondi:a 
-function ajoutlisteZ(nb){
-    let around = Math.round(nb/a)*a;
-    let index = Z.indexOf(around);
 
-    if (index !== -1) {
-        Zo[index]++;
-    } else {
-        Z.push(around);
-        Zo.push(1);
+function diviserEnPlages(liste, nombreDePlages) {
+    // Trouver la valeur minimale et maximale dans la liste
+    const min = Math.min(...liste);
+    const max = Math.max(...liste);
+
+    // Calculer la largeur de chaque plage
+    const largeurPlage = (max - min) / nombreDePlages;
+
+    // Initialiser les listes de plages et de comptages
+    const plages = [];
+    const compteurs = new Array(nombreDePlages).fill(0);
+
+    // Remplir la liste des plages
+    for (let i = 0; i < nombreDePlages; i++) {
+        const plageMin = min + i * largeurPlage;
+        const plageMax = min + (i + 1) * largeurPlage;
+        plages.push([plageMin, plageMax]);
     }
+
+    // Compter le nombre de valeurs dans chaque plage
+    for (const valeur of liste) {
+        for (let i = 0; i < nombreDePlages; i++) {
+            if (valeur >= plages[i][0] && valeur < plages[i][1]) {
+                compteurs[i]++;
+                break;  // Une valeur ne peut appartenir qu'à une seule plage
+            }
+        }
+    }
+
+    return { plages, compteurs };
 }
 
 
-function ajoutlisteB(nb){
-    let around = Math.round(nb/a)*a;
-    let index = B.indexOf(around);
-
-    if (index !== -1) {
-        Bo[index]++;
-    } else {
-        B.push(around);
-        Bo.push(1);
-    }
-}
 
 
-function ajoutlisteC(nb){
-    let around = Math.round(nb/a)*a;
-    let index = C.indexOf(around);
-
-    if (index !== -1) {
-        Co[index]++;
-    } else {
-        C.push(around);
-        Co.push(1);
-    }
-}
 
 
 //ajout de ligne dans notre tableau de page
@@ -68,53 +66,55 @@ etat.innerHTML = "Connecté";
 
 
 // ajout des listes dans les devices 
-afficherdevices('../log/0080E115000A9B3C.csv')
+try {
+    const result = await afficherdevices('../log/0080E115000A9B3C.csv');
+    Z.push(result[9]);
+    B.push(result[10]);
+    C.push(result[11]);
 
-    .then(result => {
-        ajoutlisteZ(result[9]);
-        ajoutlisteB(result[10]);
-        ajoutlisteC(result[11]);
-     
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
 
-afficherdevices('../log/0080E115000ADBE9.csv')
+try {
+    const result = await afficherdevices('../log/0080E115000ADBE9.csv');
+    Z.push(result[9]);
+    B.push(result[10]);
+    C.push(result[11]);
 
-    .then(result => {
-        ajoutlisteZ(result[9]);
-        ajoutlisteB(result[10]);
-        ajoutlisteC(result[11]);
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
 
-afficherdevices('../log/0080E115000AC899.csv')
+try {
+    const result = await afficherdevices('../log/0080E115000AC899.csv');
+    Z.push(result[9]);
+    B.push(result[10]);
+    C.push(result[11]);
 
-    .then(result => {
-        ajoutlisteZ(result[9]);
-        ajoutlisteB(result[10]);
-        ajoutlisteC(result[11]);
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
-
-afficherdevices('../log/0080E115000ACF0E.csv')
-
- .then(result => {
-    ajoutlisteZ(result[9]);
-    ajoutlisteB(result[10]);
-    ajoutlisteC(result[11]);
-    tabamp();       
-    })
-    .catch(error => {
-        console.error('Erreur lors de l\'affichage des devices :', error);
-    });
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
 
 
+
+try {
+    const result = await afficherdevices('../log/0080E115000ACF0E.csv');
+    Z.push(result[9]);
+    B.push(result[10]);
+    C.push(result[11]);
+} catch (error) {
+    console.error('Erreur lors de l\'affichage des devices :', error);
+}
+
+var Cnew=diviserEnPlages(C, 10).plages;
+var Bnew=diviserEnPlages(B, 10).plages;
+var Znew=diviserEnPlages(Z, 10).plages;
+Co=diviserEnPlages(C, 10).compteurs;
+Bo=diviserEnPlages(B, 10).compteurs;
+Zo=diviserEnPlages(Z, 10).compteurs;
+
+tabamp();
 
 // fonction qui affiche les camemberts 
 function tabamp(){
@@ -128,7 +128,7 @@ function tabamp(){
     var graphique1 = new Chart(ctx1, {
         type: 'bar',
         data: {
-            labels: B,
+            labels: Bnew,
             datasets: [{
                 label: 'Axe Y',
                 data: Bo,
@@ -149,7 +149,7 @@ function tabamp(){
     var graphique2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: Z,
+            labels: Znew,
             datasets: [{
                 label: 'Axe X',
                 data: Zo,
@@ -171,7 +171,7 @@ function tabamp(){
     var graphique3 = new Chart(ctx3, {
         type: 'bar',
         data: {
-            labels:C,
+            labels:Cnew,
             datasets: [{
                 label: 'Axe Z',
                 data: Co,

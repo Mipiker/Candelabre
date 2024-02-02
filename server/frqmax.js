@@ -49,52 +49,45 @@ function ajoutlisteC(nb){
 
 
 
-afficherdevices('../log/0080E115000A9B3C.csv')
-
-    .then(result => {
+    try {
+        const result = await afficherdevices('../log/0080E115000A9B3C.csv');
         ajoutlisteZ(result[12]);
         ajoutlisteB(result[13]);
         ajoutlisteC(result[14]);
-     
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Erreur lors de l\'affichage des devices :', error);
-    });
-
-    afficherdevices('../log/0080E115000ADBE9.csv')
-
-    .then(result => {
+    }
+    
+    try {
+        const result = await afficherdevices('../log/0080E115000ADBE9.csv');
         ajoutlisteZ(result[12]);
         ajoutlisteB(result[13]);
         ajoutlisteC(result[14]);
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Erreur lors de l\'affichage des devices :', error);
-    });
-
-afficherdevices('../log/0080E115000AC899.csv')
-
-    .then(result => {
+    }
+    
+    try {
+        const result = await afficherdevices('../log/0080E115000AC899.csv');
         ajoutlisteZ(result[12]);
         ajoutlisteB(result[13]);
         ajoutlisteC(result[14]);
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Erreur lors de l\'affichage des devices :', error);
-    });
-
-afficherdevices('../log/0080E115000ACF0E.csv')
-
- .then(result => {
-    ajoutlisteZ(result[12]);
-    ajoutlisteB(result[13]);
-    ajoutlisteC(result[14]);
-    tabfrqmax();       
-    })
-    .catch(error => {
+    }
+    
+    
+    
+    try {
+        const result = await afficherdevices('../log/0080E115000ACF0E.csv');
+        ajoutlisteZ(result[12]);
+        ajoutlisteB(result[13]);
+        ajoutlisteC(result[14]);
+    } catch (error) {
         console.error('Erreur lors de l\'affichage des devices :', error);
-    });
-
+    }
+    
+    tabfrqmax();
 function tabfrqmax(){
 
 //definition des contexts, on choisi un affichage à deux dimensions
