@@ -36,7 +36,9 @@ async function deviceSelected(device) {
     document.getElementById('selected-device').textContent = `Informations sur l'appareil ${device.EUI}`;
     document.getElementById("selected-device-last-connection").textContent = `Dernière connection le ${deviceLog.slice(-1)[0].date}`;
     document.getElementById("selected-device-coordinates").textContent = `Coordonnées GPS : ${device.latitude}, ${device.longitude}`;
-    document.getElementById("selected-device-coordinates").removeEventListener("click", openGoogleMap(device)).addEventListener("click", openGoogleMap(device));
+    var element = document.getElementById("selected-device-coordinates");
+    element.parentNode.replaceChild(element.cloneNode(true), element);
+    document.getElementById("selected-device-coordinates").addEventListener("click", function() {(openGoogleMap(device))});
     updateURLParameter('deviceEUI', device.EUI);
 
     var XAxis = [];
