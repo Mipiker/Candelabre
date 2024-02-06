@@ -1,6 +1,6 @@
 .dynamic-device-list {
     position: absolute;
-    left: 250px;
+    left: 350px;
     top: 50px;
 }
 
@@ -29,7 +29,7 @@
 
 .device-info {
     position: absolute;
-    left: 50%;
+    left: max(50%, 600px);
     top: 50px;
     width: 45%;
     height: 45%;

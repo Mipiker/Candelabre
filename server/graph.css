@@ -1,0 +1,56 @@
+#axex{
+    height: 80%;
+    position: fixed;
+    left: 1000px;
+    top: 10%;
+    width: 500px;
+    margin: 0 0 0 0;
+	padding: 10px 0px 10px 35px;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+	text-indent: 10px;
+}
+
+#axey{
+    height: 80%;
+    position: fixed;
+    left: 250px;
+    top: 10%;
+    width: 500px;
+    margin: 0 0 0 0;
+	padding: 10px 0px 10px 35px;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+	text-indent: 10px;
+}
+
+#axez{
+    height: 80%;
+    position: fixed;
+    left: 250px;
+    top: 50%;
+    width: 500px;
+    margin: 0 0 0 0;
+	padding: 10px 0px 10px 35px;
+    font-weight: bold;
+    font-size: large;
+    text-align: left;
+	text-indent: 10px;
+}
+
+#tabdevice{
+    height: 100px;
+    position: fixed;
+    left: 1100px;
+    top: 50%;
+    width: 300px;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#titleline{
+    font-weight:bold;
+}
