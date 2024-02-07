@@ -15,7 +15,7 @@ function diviserEnPlages(liste, nombreDePlages) {
     const max = Math.max(...liste);
 
     // Calculer la largeur de chaque plage
-    const largeurPlage = (max - min) / nombreDePlages;
+    const largeurPlage = (max - min+1) / nombreDePlages;
 
     // Initialiser les listes de plages et de comptages
     const plages = [];
@@ -138,7 +138,25 @@ function tabamp(){
             }]
         },
         options: {
+            plugins: {
+                title:{
+                    display: true,
+                    text:"Puissance selon l'axe y"
+                }
+            },
             scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                    },
+                    ticks: {
+                        callback: function(value, index, values) {
+                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
+                            return ; // Exemple: Ajouter "Mois" devant chaque étiquette
+                        }
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }
@@ -159,7 +177,25 @@ function tabamp(){
             }]
         },
         options: {
+            plugins: {
+                title:{
+                    display: true,
+                    text:"Puissance selon l'axe x"
+                }
+            },
             scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
+                            return ; // Exemple: Ajouter "Mois" devant chaque étiquette
+                        }
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }
@@ -175,22 +211,40 @@ function tabamp(){
             datasets: [{
                 label: 'Axe Z',
                 data: Co,
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                borderColor: 'rgba(0, 0, 0, 0.5)',
+                backgroundColor: 'rgba(243, 128, 255, 0.8 )',
+                borderColor: 'rgba(243, 128, 255, 0.8)',
                 borderWidth: 1
             }]
         },
         options: {
+            plugins: {
+                title:{
+                    display: true,
+                    text:"Puissance selon l'axe z"
+                }
+            },
             scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
+                            return; // Exemple: Ajouter "Mois" devant chaque étiquette
+                        }
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }
+                
             }
         }
     });
    
 }
-
 
 
 

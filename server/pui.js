@@ -186,7 +186,7 @@ function tabpui(){
                     ticks: {
                         callback: function(value, index, values) {
                             // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
-                            return  value; // Exemple: Ajouter "Mois" devant chaque étiquette
+                            return ; // Exemple: Ajouter "Mois" devant chaque étiquette
                         }
                     }
                 },
@@ -225,7 +225,7 @@ function tabpui(){
                     ticks: {
                         callback: function(value) {
                             // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
-                            return  value; // Exemple: Ajouter "Mois" devant chaque étiquette
+                            return ; // Exemple: Ajouter "Mois" devant chaque étiquette
                         }
                     }
                 },
@@ -244,8 +244,8 @@ function tabpui(){
             datasets: [{
                 label: 'Axe Z',
                 data: Co,
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                borderColor: 'rgba(0, 0, 0, 0.5)',
+                backgroundColor: 'rgba(243, 128, 255, 0.8 )',
+                borderColor: 'rgba(243, 128, 255, 0.8)',
                 borderWidth: 1
             }]
         },
