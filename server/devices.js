@@ -32,9 +32,13 @@ async function generateDeviceList() {
 
 // Display the device informations when selected
 async function deviceSelected(device) {
-    var deviceLog = await csvJSON(`../log/${device.EUI}.csv`)
-    document.getElementById('selected-device').textContent = `Informations de l'appareil ${device.EUI}`;
+    var deviceLog = await csvJSON(`../log/${device.EUI}.csv`);
+    document.getElementById('selected-device').textContent = `Informations sur l'appareil ${device.EUI}`;
     document.getElementById("selected-device-last-connection").textContent = `Dernière connection le ${deviceLog.slice(-1)[0].date}`;
+    document.getElementById("selected-device-coordinates").textContent = `Coordonnées GPS : ${device.latitude}, ${device.longitude}`;
+    var element = document.getElementById("selected-device-coordinates");
+    element.parentNode.replaceChild(element.cloneNode(true), element);
+    document.getElementById("selected-device-coordinates").addEventListener("click", function() {(openGoogleMap(device))});
     updateURLParameter('deviceEUI', device.EUI);
 
     var XAxis = [];
@@ -115,4 +119,9 @@ function updateURLParameter(key, value) {
     urlParams.set(key, value);
     const newURL = window.location.pathname + '?' + urlParams.toString();
     window.history.replaceState({}, '', newURL);
+}
+
+// Open a google map tab with device GPS coordinates
+function openGoogleMap(device) {
+    window.open(`https://www.google.com/maps?q=${device.latitude},${device.longitude}`);
 }

@@ -1,6 +1,6 @@
 .dynamic-device-list {
     position: absolute;
-    left: 250px;
+    left: 350px;
     top: 50px;
 }
 
@@ -29,13 +29,17 @@
 
 .device-info {
     position: absolute;
-    left: 50%;
+    left: max(50%, 600px);
     top: 50px;
-    width: 40%;
-    height: 40%
+    width: 45%;
+    height: 45%;
+}
+
+#selected-device-coordinates {
+    cursor: pointer;
 }
 
 .device-info canvas {
-    position:relative;
-    top: 50%; 
+    position: relative;
+    top: 100px;
 }

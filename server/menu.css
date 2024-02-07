@@ -1,0 +1,39 @@
+.menu {
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    background: hsla(0, 1%, 60%, 0.208);
+    display: flex;
+    flex-direction: column;
+}
+
+.menu img {
+    width: 100%;
+}
+
+.menu a {
+    text-decoration: none;
+    margin-top: 50px;
+    border-radius: 50px;
+}
+
+.menu button {
+    cursor: pointer;
+    border: transparent;
+    background-color: transparent;
+    font-size: 20px;
+    padding-left: 25px;
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: 25px;
+    width: 250px;
+    height: 50px;
+    text-align: left;
+}
+
+.menu button:hover {
+    background-color: hsla(0, 1%, 60%, 0.608) !important;
+}
+
+#selectedButton {
+    background-color: hsla(0, 1%, 60%, 0.208);
+}
