@@ -1,4 +1,4 @@
-import {afficherdevices} from './readLogManager.js'
+import {csvJSON} from './readLogManager.js'
 
 var Z=[];
 var B=[];
@@ -48,49 +48,66 @@ function diviserEnPlages(liste, nombreDePlages) {
 
 //ajout de ligne dans notre tableau de page
 
-function ajoutLigneTableau(EUI,n){
+async function ajoutLigneTableau() {
     var table = document.getElementById("tabdevice");
+    const devices = await csvJSON('../log/devices.csv');
+    
 
-// on met à la ligne qu'on veut les éléments qu'on cherche à introduire
-var row = table.insertRow(n);
-
-// on crée nos variables qui vont entrer dans les cellules
-var appareil = row.insertCell(0);
-var etat = row.insertCell(1);
-
-// on met le contenu des colonnes
-appareil.innerHTML = EUI;
-etat.innerHTML = "Connecté";
-
+    // Boucle sur les appareils pour insérer une ligne pour chaque appareil
+    devices.forEach((device, index) => {
+        var row = table.insertRow(index+1);
+            row.addEventListener("click", function() {
+                window.location.href=`/devices.html?deviceEUI=${device.EUI}`
+            
+        });
+        
+        // Insertion des valeurs dans les cellules
+        var appareil = row.insertCell(0);
+        appareil.innerHTML = device.EUI; // Assurez-vous que EUI est la propriété correcte de votre objet device
+    });
 }
+
+
+ajoutLigneTableau();
 
 
 // ajout des listes dans les devices 
 try {
-    const result = await afficherdevices('../log/0080E115000A9B3C.csv');
-    Z.push(result[12]);
-    B.push(result[13]);
-    C.push(result[14]);
+    const result = (await csvJSON('../log/0080E115000A9B3C.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.freqX);
+        B.push(result.freqY);
+        C.push(result.freqZ);
+    }
+ 
 
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
 
 try {
-    const result = await afficherdevices('../log/0080E115000ADBE9.csv');
-    Z.push(result[12]);
-    B.push(result[13]);
-    C.push(result[14]);
+    const result = (await csvJSON('../log/0080E115000ADBE9.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.freqX);
+        B.push(result.freqY);
+        C.push(result.freqZ);
+    }
 
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
 
 try {
-    const result = await afficherdevices('../log/0080E115000AC899.csv');
-    Z.push(result[12]);
-    B.push(result[13]);
-    C.push(result[14]);
+    const result = (await csvJSON('../log/0080E115000AC899.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.freqX);
+        B.push(result.freqY);
+        C.push(result.freqZ);
+    }
+
 
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
@@ -99,13 +116,17 @@ try {
 
 
 try {
-    const result = await afficherdevices('../log/0080E115000ACF0E.csv');
-    Z.push(result[12]);
-    B.push(result[13]);
-    C.push(result[14]);
+    const result = (await csvJSON('../log/0080E115000ACF0E.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.freqX);
+        B.push(result.freqY);
+        C.push(result.freqZ);
+    }
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
+console.log(Z);
 
 var Cnew=diviserEnPlages(C, 10).plages;
 var Bnew=diviserEnPlages(B, 10).plages;
@@ -141,7 +162,7 @@ function tabamp(){
             plugins: {
                 title:{
                     display: true,
-                    text:"Puissance selon l'axe y"
+                    text:"Fréquence de l'amplitude  selon l'axe y"
                 }
             },
             scales: {
@@ -181,7 +202,7 @@ function tabamp(){
             plugins: {
                 title: {
                     display: true,
-                    text: "Puissance selon l'axe x"
+                    text: "Fréquence de l'amplitude  selon l'axe x"
                 }
             },
             scales: {
@@ -193,7 +214,7 @@ function tabamp(){
                     ticks: {
                         callback: function(value) {
                             // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
-                            return value; // Par exemple, afficher directement la valeur de l'axe x
+                            return; // Par exemple, afficher directement la valeur de l'axe x
                         }
                     }
                 },
@@ -223,7 +244,7 @@ function tabamp(){
             plugins: {
                 title:{
                     display: true,
-                    text:"Puissance selon l'axe z"
+                    text:"Fréquence de l'amplitude  selon l'axe z"
                 }
             },
             scales: {
@@ -251,5 +272,3 @@ function tabamp(){
 
 
 
-ajoutLigneTableau("561451514545465",1);
-ajoutLigneTableau("536144545645644",2);

@@ -3,42 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amplitude Maximale</title>
+    <title>Mesures detaillées</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type ="module" src ="amplitude.js"></script>  
+    <script type ="module" src ="mesures.js"></script> 
     <link rel="stylesheet" href="graph.css">
     <link rel="stylesheet" href="menu.css">
 </head>
 <body>
-     
-    <div class="graph">
-        <canvas id="graphique1"></canvas>
-        <canvas id="graphique2"></canvas>
-        <canvas id="graphique3"></canvas>
+
+    <div id="axex">
+        <canvas id="graphique1" width="20" height="10"></canvas>
     </div>
-  
-    <div class="menu">
+    <div id="axey">
+        <canvas id="graphique2" width="20" height="10"></canvas>    
+    </div>
+    <div id="axez">
+        <canvas id="graphique3" width="20" height="10"></canvas>    
+    </div>
+ 
+    <div class=menu>
         <img src="./img/logo-rincent.png" alt="Logo Rincent">
         <a href="puissance.html" >
             <button>Puissance</button>
         </a>
         <a href="amplitude.html" >
-            <button id="selectedButton">Amplitude Maximale</button>
+            <button>Amplitude Maximale</button>
         </a> 
         <a href="frequence.html" >
-            <button>Fréquence Maximale</button>    
+            <button>Fréquence Maximale</button>
         </a>
         <a href="devices.html" >
             <button>Appareils</button>
         </a>
         <a href="mesures.html" >
-            <button>Mesures détaillées</button>
-        </a>
+            <button id="selectedButton">Mesures Détaillées</button>           </a>
     </div>
-        
-    <table id="tabdevice">
-        <tr class="titleline"><td>Appareils</td><td>X</td><td>Y</td><td>Z</td></tr>
-    </table>
-  
+
 </body>
 </html>
