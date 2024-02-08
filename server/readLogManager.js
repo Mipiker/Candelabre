@@ -26,7 +26,7 @@ export async function afficherdevices(fileeui) {
 export async function csvJSON(fileEUI){
     var csv = await (await fetch(fileEUI)).text();
     let lines = csv.split("\r\n");
-    if(lines.slice(-1) == '') {
+    while(lines.slice(-1) == '') {
         lines = lines.slice(0, -1);
     }
     var result = [];

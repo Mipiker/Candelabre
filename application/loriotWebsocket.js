@@ -50,7 +50,7 @@ function sendPayload(EUI, port, data) {
 }
 
 // Instruct the device EUI to take a identificated measure with parameter fe and Ne  
-function takeMeasure(EUI, fe, Ne) {
+function takeMeasure(EUI, fe, Ne, wind) {
     if(downlinksDates.length == 65535)
         downlinksDates = [];
     downlinksDates.push(new Date());
@@ -58,7 +58,7 @@ function takeMeasure(EUI, fe, Ne) {
     data += fe.toString(16).padStart(2, '0');
     data += (downlinksDates.length - 1).toString(16).padStart(4, '0');
     sendPayload(EUI, 1, data);
-    logManager.saveDownlink(downlinksDates[downlinksDates.length - 1]);
+    logManager.saveDownlink(downlinksDates[downlinksDates.length - 1], wind);
 }
 
 // Transform a packed data to a structured data

@@ -15,7 +15,8 @@ async function init() {
 }
 
 async function mainLoop() {
-    if(await weatherAPI.weatherRequest() > MIN_WIND_SPEED) {
-        //loriotWebsocket.takeMeasure('0080E115000A9B3C', 20, 128, 6);
+    var wind= await weatherAPI.weatherRequest();
+    if(wind > MIN_WIND_SPEED) {
+        loriotWebsocket.takeMeasure('0080E115000A9B3C', 20, 128, wind);
     }
 }

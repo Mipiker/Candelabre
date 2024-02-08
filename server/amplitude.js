@@ -1,4 +1,4 @@
-import {afficherdevices} from './readLogManager.js'
+import {csvJSON} from './readLogManager.js'
 
 var Z=[];
 var B=[];
@@ -6,7 +6,6 @@ var C=[];
 var Zo=[];
 var Bo=[];
 var Co=[];
-var a=1;
 
 
 function diviserEnPlages(liste, nombreDePlages) {
@@ -25,7 +24,7 @@ function diviserEnPlages(liste, nombreDePlages) {
     for (let i = 0; i < nombreDePlages; i++) {
         const plageMin = min + i * largeurPlage;
         const plageMax = min + (i + 1) * largeurPlage;
-        plages.push([plageMin, plageMax]);
+        plages.push([plageMin, plageMax+1]);
     }
 
     // Compter le nombre de valeurs dans chaque plage
@@ -48,50 +47,65 @@ function diviserEnPlages(liste, nombreDePlages) {
 
 //ajout de ligne dans notre tableau de page
 
-function ajoutLigneTableau(EUI,n){
+async function ajoutLigneTableau() {
     var table = document.getElementById("tabdevice");
+    const devices = await csvJSON('../log/devices.csv');
+    
 
-// on met à la ligne qu'on veut les éléments qu'on cherche à introduire
-var row = table.insertRow(n);
-
-// on crée nos variables qui vont entrer dans les cellules
-var appareil = row.insertCell(0);
-var etat = row.insertCell(1);
-
-// on met le contenu des colonnes
-appareil.innerHTML = EUI;
-etat.innerHTML = "Connecté";
-
+    // Boucle sur les appareils pour insérer une ligne pour chaque appareil
+    devices.forEach((device, index) => {
+        var row = table.insertRow(index+1);
+            row.addEventListener("click", function() {
+                window.location.href=`/devices.html?deviceEUI=${device.EUI}`
+            
+        });
+        
+        // Insertion des valeurs dans les cellules
+        var appareil = row.insertCell(0);
+        appareil.innerHTML = device.EUI; // Assurez-vous que EUI est la propriété correcte de votre objet device
+    });
 }
+
+
+ajoutLigneTableau();
+
 
 
 // ajout des listes dans les devices 
 try {
-    const result = await afficherdevices('../log/0080E115000A9B3C.csv');
-    Z.push(result[9]);
-    B.push(result[10]);
-    C.push(result[11]);
+    const result = (await csvJSON('../log/0080E115000A9B3C.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.magX);
+        B.push(result.magY);
+        C.push(result.magZ);
+    }
+   
 
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
 
 try {
-    const result = await afficherdevices('../log/0080E115000ADBE9.csv');
-    Z.push(result[9]);
-    B.push(result[10]);
-    C.push(result[11]);
-
+    const result = (await csvJSON('../log/0080E115000ADBE9.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.magX);
+        B.push(result.magY);
+        C.push(result.magZ);
+    }
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
 
 try {
-    const result = await afficherdevices('../log/0080E115000AC899.csv');
-    Z.push(result[9]);
-    B.push(result[10]);
-    C.push(result[11]);
-
+    const result = (await csvJSON('../log/0080E115000AC899.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.magX);
+        B.push(result.magY);
+        C.push(result.magZ);
+    }
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
@@ -99,13 +113,20 @@ try {
 
 
 try {
-    const result = await afficherdevices('../log/0080E115000ACF0E.csv');
-    Z.push(result[9]);
-    B.push(result[10]);
-    C.push(result[11]);
+    const result = (await csvJSON('../log/0080E115000ACF0E.csv')).slice(-1)[0];
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    if(result.date==date){
+        Z.push(result.magX);
+        B.push(result.magY);
+        C.push(result.magZ);
+    }
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
+console.log(Z);
+console.log(B);
+console.log(C);
+
 
 var Cnew=diviserEnPlages(C, 10).plages;
 var Bnew=diviserEnPlages(B, 10).plages;
@@ -141,7 +162,7 @@ function tabamp(){
             plugins: {
                 title:{
                     display: true,
-                    text:"Puissance selon l'axe y"
+                    text:"Amplitude maximale selon l'axe y"
                 }
             },
             scales: {
@@ -180,7 +201,7 @@ function tabamp(){
             plugins: {
                 title:{
                     display: true,
-                    text:"Puissance selon l'axe x"
+                    text:"Amplitude maximale selon l'axe x"
                 }
             },
             scales: {
@@ -220,7 +241,7 @@ function tabamp(){
             plugins: {
                 title:{
                     display: true,
-                    text:"Puissance selon l'axe z"
+                    text:"Amplitude maximale selon l'axe z"
                 }
             },
             scales: {
@@ -248,5 +269,3 @@ function tabamp(){
 
 
 
-ajoutLigneTableau("561451514545465",1);
-ajoutLigneTableau("536144545645644",2);
