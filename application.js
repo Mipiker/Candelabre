@@ -6,7 +6,7 @@ const utils = require('./application/utils')
 const MIN_WIND_SPEED = 0;
 
 init();
-setInterval(mainLoop, 2*60*1000);
+setInterval(mainLoop, 2*5*1000);
 
 async function init() {
     loriotWebsocket.connectToWebsocket();
@@ -16,6 +16,7 @@ async function init() {
 
 async function mainLoop() {
     var wind= await weatherAPI.weatherRequest();
+    console.log(wind);
     if(wind > MIN_WIND_SPEED) {
         loriotWebsocket.takeMeasure('0080E115000A9B3C', 20, 128, wind);
     }

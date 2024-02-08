@@ -3,9 +3,11 @@ import {csvJSON} from './readLogManager.js'
 var Z=[];
 var B=[];
 var C=[];
+var D=[];
 var Zo=[];
-var Bo=[];
 var Co=[];
+var Bo=[];
+var W=[];
 
 
 function diviserEnPlages(liste, nombreDePlages) {
@@ -68,18 +70,24 @@ async function ajoutLigneTableau() {
 
 
 ajoutLigneTableau();
-
+const downlinks= (await csvJSON('../log/downlink.csv'));
+    downlinks.forEach((downlink, index) => {
+        if(downlink.wind!="undifined"){
+            W.push(downlink.wind);
+        }
+       
+    });
+console.log(W);
 
 
 // ajout des listes dans les devices 
 try {
-    const result = (await csvJSON('../log/0080E115000A9B3C.csv')).slice(-1)[0];
-    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
-    if(result.date==date){
-        Z.push(result.magX);
-        B.push(result.magY);
-        C.push(result.magZ);
-    }
+    const result = (await csvJSON('../log/0080E115000A9B3C.csv'));
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0];
+    result.forEach((measure) => {
+        Z.push(measure.magX)
+        });
+console.log(Z);
    
 
 } catch (error) {
@@ -88,7 +96,7 @@ try {
 
 try {
     const result = (await csvJSON('../log/0080E115000ADBE9.csv')).slice(-1)[0];
-    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0];
     if(result.date==date){
         Z.push(result.magX);
         B.push(result.magY);
@@ -100,7 +108,7 @@ try {
 
 try {
     const result = (await csvJSON('../log/0080E115000AC899.csv')).slice(-1)[0];
-    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0];
     if(result.date==date){
         Z.push(result.magX);
         B.push(result.magY);
@@ -114,7 +122,7 @@ try {
 
 try {
     const result = (await csvJSON('../log/0080E115000ACF0E.csv')).slice(-1)[0];
-    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
+    const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0];
     if(result.date==date){
         Z.push(result.magX);
         B.push(result.magY);
@@ -123,9 +131,6 @@ try {
 } catch (error) {
     console.error('Erreur lors de l\'affichage des devices :', error);
 }
-console.log(Z);
-console.log(B);
-console.log(C);
 
 
 var Cnew=diviserEnPlages(C, 10).plages;
@@ -149,10 +154,10 @@ function tabamp(){
     var graphique1 = new Chart(ctx1, {
         type: 'scatter',
         data: {
-            labels: B,
+            labels: W,
             datasets: [{
                 label: 'Axe Y',
-                data: B,
+                data: W,
                 backgroundColor: 'rgba(255, 99, 12, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 0.5)',
                 borderWidth: 1
@@ -171,12 +176,6 @@ function tabamp(){
                     title: {
                         display: true,
                     },
-                    ticks: {
-                        callback: function(value, index, values) {
-                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
-                            return ; // Exemple: Ajouter "Mois" devant chaque étiquette
-                        }
-                    }
                 },
                 y: {
                     beginAtZero: true
@@ -188,7 +187,7 @@ function tabamp(){
     var graphique2 = new Chart(ctx2, {
         type: 'scatter',
         data: {
-            labels: Z,
+            labels: W,
             datasets: [{
                 label: 'Axe X',
                 data: Z,
@@ -222,10 +221,10 @@ function tabamp(){
     var graphique3 = new Chart(ctx3, {
         type: 'scatter',
         data: {
-            labels:C,
+            labels:W,
             datasets: [{
                 label: 'Axe Z',
-                data: C,
+                data: W,
                 backgroundColor: 'rgba(243, 128, 255, 0.8 )',
                 borderColor: 'rgba(243, 128, 255, 0.8)',
                 borderWidth: 1
@@ -244,12 +243,6 @@ function tabamp(){
                     title: {
                         display: true,
                     },
-                    ticks: {
-                        callback: function(value) {
-                            // Personnalisez ici la façon dont vous souhaitez afficher les étiquettes
-                            return; // Exemple: Ajouter "Mois" devant chaque étiquette
-                        }
-                    }
                 },
                 y: {
                     beginAtZero: true
