@@ -30,9 +30,10 @@
 .device-info {
     position: absolute;
     left: max(50%, 600px);
+    right: 50px;
     top: 50px;
-    width: 45%;
     height: 45%;
+    min-width: 400px;
 }
 
 #selected-device-coordinates {
