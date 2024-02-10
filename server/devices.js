@@ -34,7 +34,7 @@ async function generateDeviceList() {
 async function deviceSelected(device) {
     var deviceLog = await csvJSON(`../log/${device.EUI}.csv`);
     document.getElementById('selected-device').textContent = `Informations sur l'appareil ${device.EUI}`;
-    document.getElementById("selected-device-last-connection").textContent = `Dernière connection le ${deviceLog.slice(-1)[0].date}`;
+    document.getElementById("selected-device-last-connection").textContent = deviceLog.length != 0 ? `Dernière connection le ${deviceLog.slice(-1)[0].date}` : `L'appareil ne s'est jamais connecté`;
     document.getElementById("selected-device-coordinates").textContent = `Coordonnées GPS : ${device.latitude}, ${device.longitude}`;
     var element = document.getElementById("selected-device-coordinates");
     element.parentNode.replaceChild(element.cloneNode(true), element);

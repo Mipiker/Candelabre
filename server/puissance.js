@@ -14,18 +14,16 @@ var a=1;
 
 
 //ajout de ligne dans notre tableau de page
-
 async function ajoutLigneTableau() {
     var table = document.getElementById("tabdevice");
-    const devices = await csvJSON('../log/devices.csv');
-    
+    const devices = await csvJSON('../log/devices.csv');   
+    var tbody = table.createTBody();
 
     // Boucle sur les appareils pour insérer une ligne pour chaque appareil
     devices.forEach((device, index) => {
-        var row = table.insertRow(index+1);
-            row.addEventListener("click", function() {
-                window.location.href=`/devices.html?deviceEUI=${device.EUI}`
-            
+        var row = tbody.insertRow();
+        row.addEventListener("click", function() {
+            window.location.href = `/devices.html?deviceEUI=${device.EUI}`;
         });
         
         // Insertion des valeurs dans les cellules
