@@ -9,15 +9,15 @@ init();
 setInterval(mainLoop, 2*5*1000);
 
 async function init() {
-    loriotWebsocket.connectToWebsocket();
+    console.log(await weatherAPI.weatherRequest());
+    /* loriotWebsocket.connectToWebsocket();
     await utils.sleep(5000);
-    loriotWebsocket.takeMeasure('0080E115000A91E3', 20, 128*4); 
+    loriotWebsocket.takeMeasure('0080E115000A91E3', 20, 128*4, 0);  */
 }
 
 async function mainLoop() {
-    var wind= await weatherAPI.weatherRequest();
-    console.log(wind);
+    /* var wind= await weatherAPI.weatherRequest();
     if(wind > MIN_WIND_SPEED) {
         loriotWebsocket.takeMeasure('0080E115000A9B3C', 20, 128, wind);
-    }
-}
+    } */
+} 

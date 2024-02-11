@@ -54,22 +54,22 @@ async function deviceSelected(device) {
     const chartData = {
         labels: XAxis,
         datasets: [{
-            label: 'Accélération X',
+            label: 'Axe X',
             data: averageX, 
             borderColor: 'rgba(54, 162, 235, 0.5)',
             backgroundColor: 'rgba(54, 162, 235, 0.5)',
         },
         {
-            label: 'Accélération Y',
+            label: 'Axe Y',
             data: averageY,
             borderColor: 'rgba(255, 99, 12, 0.5)',
             backgroundColor: 'rgba(255, 99, 12, 0.5)',
         },
         {
-            label: 'Accélération Z',
+            label: 'Axe Z',
             data: averageZ,
-            borderColor: 'rgba(243, 128, 255, 0.8)',
-            backgroundColor: 'rgba(243, 128, 255, 0.8)',
+            borderColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
         }]
     }
     if(chart) {
