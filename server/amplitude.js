@@ -71,7 +71,6 @@ ajoutLigneTableau();
 
 
 
-// ajout des listes dans les devices 
 try {
     const result = (await csvJSON('../log/0080E115000A9B3C.csv')).slice(-1)[0];
     const date= (await csvJSON('../log/downlink.csv')).slice(-1)[0].date;
