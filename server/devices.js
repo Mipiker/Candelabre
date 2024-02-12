@@ -34,7 +34,7 @@ async function generateDeviceList() {
 async function deviceSelected(device) {
     var deviceLog = await csvJSON(`../log/${device.EUI}.csv`);
     document.getElementById('selected-device').textContent = `Informations sur l'appareil ${device.EUI}`;
-    document.getElementById("selected-device-last-connection").textContent = `Dernière connection le ${deviceLog.slice(-1)[0].date}`;
+    document.getElementById("selected-device-last-connection").textContent = deviceLog.length != 0 ? `Dernière connection le ${deviceLog.slice(-1)[0].date}` : `L'appareil ne s'est jamais connecté`;
     document.getElementById("selected-device-coordinates").textContent = `Coordonnées GPS : ${device.latitude}, ${device.longitude}`;
     var element = document.getElementById("selected-device-coordinates");
     element.parentNode.replaceChild(element.cloneNode(true), element);
@@ -54,22 +54,22 @@ async function deviceSelected(device) {
     const chartData = {
         labels: XAxis,
         datasets: [{
-            label: 'Accélération X',
+            label: 'Axe X',
             data: averageX, 
             borderColor: 'rgba(54, 162, 235, 0.5)',
             backgroundColor: 'rgba(54, 162, 235, 0.5)',
         },
         {
-            label: 'Accélération Y',
+            label: 'Axe Y',
             data: averageY,
             borderColor: 'rgba(255, 99, 12, 0.5)',
             backgroundColor: 'rgba(255, 99, 12, 0.5)',
         },
         {
-            label: 'Accélération Z',
+            label: 'Axe Z',
             data: averageZ,
-            borderColor: 'rgba(243, 128, 255, 0.8)',
-            backgroundColor: 'rgba(243, 128, 255, 0.8)',
+            borderColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
         }]
     }
     if(chart) {

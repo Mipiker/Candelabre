@@ -10,7 +10,7 @@ async function getDevices() {
 // Save data corresponding to the device EUI
 async function saveData(EUI, data) {
     const path = `./log/${EUI}.csv`;
-    const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + Object.values(data).join(',') + '\n';
+    const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + `${Object.values(data).join(',')}\n`;
     fs.appendFile(path, newCsvLine, 'utf8', (err) => {
         if (err) {
             console.error(`Error saving data of device ${EUI}:`, err);
@@ -28,7 +28,7 @@ async function getData(EUI) {
 // Save the downlink date
 async function saveDownlink(date, wind) {
     const path = './log/downlink.csv';
-    const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + utils.getDate(date) + `,${wind}\n`;
+    const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + `${utils.getDate(date)},${wind}\n`;
     fs.appendFile(path, newCsvLine, 'utf8', (err) => {
         if (err) {
             console.error(`Error saving ${date.toUTCString()} downlink :`, err);

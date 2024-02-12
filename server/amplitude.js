@@ -1,55 +1,9 @@
+import {fillTable, createChart} from "./barChart.js";
 import {csvJSON} from './readLogManager.js'
 
-var Z=[];
-var B=[];
-var C=[];
-var Zo=[];
-var Bo=[];
-var Co=[];
-
-
-function diviserEnPlages(liste, nombreDePlages) {
-    // Trouver la valeur minimale et maximale dans la liste
-    const min = Math.min(...liste);
-    const max = Math.max(...liste);
-
-    // Calculer la largeur de chaque plage
-    const largeurPlage = (max - min+1) / nombreDePlages;
-
-    // Initialiser les listes de plages et de comptages
-    const plages = [];
-    const compteurs = new Array(nombreDePlages).fill(0);
-
-    // Remplir la liste des plages
-    for (let i = 0; i < nombreDePlages; i++) {
-        const plageMin = min + i * largeurPlage;
-        const plageMax = min + (i + 1) * largeurPlage;
-        plages.push([plageMin, plageMax+1]);
-    }
-
-    // Compter le nombre de valeurs dans chaque plage
-    for (const valeur of liste) {
-        for (let i = 0; i < nombreDePlages; i++) {
-            if (valeur >= plages[i][0] && valeur < plages[i][1]) {
-                compteurs[i]++;
-                break;  // Une valeur ne peut appartenir qu'à une seule plage
-            }
-        }
-    }
-
-    return { plages, compteurs };
-}
-
-
-
-
-
-
-//ajout de ligne dans notre tableau de page
-
-async function ajoutLigneTableau() {
-    var table = document.getElementById("tabdevice");
+document.addEventListener("DOMContentLoaded", async function () {
     const devices = await csvJSON('../log/devices.csv');
+<<<<<<< HEAD
     
 
     // Boucle sur les appareils pour insérer une ligne pour chaque appareil
@@ -268,3 +222,8 @@ function tabamp(){
 
 
 
+=======
+    fillTable(devices);
+    createChart(devices, 'magX', 'magY', 'magZ', "Nombre d'appareils selon l'amplitude maximale du spectre");
+});
+>>>>>>> eca09d1ba5459cfd221c45da44dc4669e487b563

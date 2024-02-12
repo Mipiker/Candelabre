@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const city = "Pornic";
+const city = "Sainte-Luce-Sur-Loire";
 const apiKey = "c21a75b667d6f7abb81f118dcf8d4611";
 const units = "metric";
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},fr&appid=${apiKey}&units=${units}`;
