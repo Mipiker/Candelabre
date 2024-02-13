@@ -10,14 +10,13 @@ export async function fillDownlinkList(downlink, devices, itemX, itemY, itemZ, t
         var li = document.createElement("li");
         li.textContent = d.date;
         li.addEventListener("click", async function() {
-            console.log(d);
             var data = await gatherData(d, devices, itemX, itemY, itemZ);
             var {label:labelX, hoverLabel:hoverLabelX, dataBar:dataX} = data[0];
             var {label:labelY, hoverLabel:hoverLabelY, dataBar:dataY} = data[1];
             var {label:labelZ, hoverLabel:hoverLabelZ, dataBar:dataZ} = data[2];
-            /* displayChart(labelX, hoverLabelX, dataX, 'chartX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
+            displayChart(labelX, hoverLabelX, dataX, 'chartX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
             displayChart(labelY, hoverLabelY, dataY, 'chartY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
-            displayChart(labelZ, hoverLabelZ, dataZ, 'chartZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)'); */
+            displayChart(labelZ, hoverLabelZ, dataZ, 'chartZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)');
         });
         ul.insertBefore(li, ul.firstChild);
     }
@@ -55,8 +54,8 @@ function generateData(data) {
     var dataBar = new Array(NB_BAR).fill(0);
     var hoverLabel = Array.from({length: NB_BAR}, () => []);
     Object.entries(data).forEach(([key, value]) => {
-        dataBar[Math.min(Math.floor((value - min) / (2 * offset)), NB_BAR-1)]++;
-        hoverLabel[Math.min(Math.floor((value - min) / (2 * offset)), NB_BAR-1)].push(key);
+        dataBar[Math.min(Math.floor(offset == 0 ? 0 : (value - min) / (2 * offset)), NB_BAR-1)]++;
+        hoverLabel[Math.min(Math.floor(offset == 0 ? 0 : (value - min) / (2 * offset)), NB_BAR-1)].push(key);
     });
     return {label, hoverLabel, dataBar};
 }
@@ -66,9 +65,11 @@ export function displayChart(label, hoverLabel, data, chartID, title, color) {
     var context = document.getElementById(chartID).getContext('2d');
     var chart = Chart.getChart(context);
     if(chart) {
-        /* chart.data.labels = label;
+        chart.data.labels = label;
         chart.data.datasets[0].data = data;
-        chart.update(); */
+        chart.options.scales.x.ticks.callback = (val) => label[val].toPrecision(3);
+        chart.options.plugins.tooltip.callbacks.label = (context) => hoverLabel[context.parsed.x];
+        chart.update();
     } else {
         new Chart(context, {
             type: 'bar',
@@ -102,7 +103,7 @@ export function displayChart(label, hoverLabel, data, chartID, title, color) {
                 scales: {
                     x: {
                         grid: {
-                            display:false
+                            display: false
                         },
                         ticks: {
                             callback: (val) => label[val].toPrecision(3)
