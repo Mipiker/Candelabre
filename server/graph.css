@@ -10,28 +10,36 @@
     margin-bottom: 50px;    
 }
 
-.tableDevice {
+.dynamic-downlink-list {
     position: absolute;
     left: 350px;
     top: 80px;
-    text-align: left;
-    border-spacing: 0px;
+    overflow: visible;
 }
 
-.tableDevice thead tr {
-    font-weight:bold;
-    font-size: 24px;
+.dynamic-downlink-list h2 {
+    margin-top: 0px;
 }
 
-.tableDevice thead td {
-    padding-bottom: 20px;
-    padding-right: 5px;
-    padding-top: 0px;
-    padding-left: 0px;
+.dynamic-downlink-list ul {
+    list-style: none;
+    cursor: pointer;
+    padding: 0;
 }
 
-.tableDevice tbody td {
-    padding-bottom: 5px;
-    padding-top: 0px;
-    padding-left: 0px;
+.dynamic-downlink-list li:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    border-radius: 15px;
+    padding-left: 10px;
+    margin-left: -10px;
+    width: 154px;
+}
+
+.dynamic-downlink-list li {
+    margin-bottom: 5px;
+    border-radius: 15px;
+    padding-left: 10px;
+    margin-left: -10px;
+    width: 154px;
+    transition: background-color 0.1s, color 0.1s;
 }

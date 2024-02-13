@@ -3,28 +3,36 @@ import {csvJSON} from './readLogManager.js'
 const NB_BAR = 10
 
 // Fill the table of devices and their respective data values
-export async function fillTable(devices) {
-    var table = document.getElementById("tabdevice"); 
-    var tbody = table.createTBody();
-    for(const device of devices) {
-        var row = tbody.insertRow();
-        row.addEventListener("click", function() {
-            window.location.href = `/devices.html?deviceEUI=${device.EUI}`;
+export async function fillDownlinkList(downlink, devices, itemX, itemY, itemZ, title) {
+    var container = document.getElementById("dynamic-downlink-list");
+    var ul = document.createElement("ul");
+    for(const d of downlink) {
+        var li = document.createElement("li");
+        li.textContent = d.date;
+        li.addEventListener("click", async function() {
+            console.log(d);
+            var data = await gatherData(d, devices, itemX, itemY, itemZ);
+            var {label:labelX, hoverLabel:hoverLabelX, dataBar:dataX} = data[0];
+            var {label:labelY, hoverLabel:hoverLabelY, dataBar:dataY} = data[1];
+            var {label:labelZ, hoverLabel:hoverLabelZ, dataBar:dataZ} = data[2];
+            /* displayChart(labelX, hoverLabelX, dataX, 'chartX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
+            displayChart(labelY, hoverLabelY, dataY, 'chartY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
+            displayChart(labelZ, hoverLabelZ, dataZ, 'chartZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)'); */
         });
-        row.insertCell(0).innerHTML = device.EUI;
+        ul.insertBefore(li, ul.firstChild);
     }
+    container.appendChild(ul);
 }
 
 // Search data and create the three bar charts for power, max magnitude and max frequency
-export async function createChart(devices, itemX, itemY, itemZ, title) {
-    var lastDownlink = (await csvJSON('../log/downlink.csv')).slice(-1)[0];
+export async function gatherData(downlink, devices, itemX, itemY, itemZ) {
     var dataX = {};
     var dataY = {};
     var dataZ = {};
     for(const device of devices) {
         var deviceData = await csvJSON(`../log/${device.EUI}.csv`);
         for(const data of deviceData) {
-            if(data.date == lastDownlink.date) {
+            if(data.date == downlink.date) {
                 dataX[device.EUI] = data[itemX];
                 dataY[device.EUI] = data[itemY];
                 dataZ[device.EUI] = data[itemZ];
@@ -32,12 +40,7 @@ export async function createChart(devices, itemX, itemY, itemZ, title) {
             }
         }
     }
-    var {label:labelX, hoverLabel:hoverLabelX, dataBar:dataX} = generateData(dataX);
-    var {label:labelY, hoverLabel:hoverLabelY, dataBar:dataY} = generateData(dataY);
-    var {label:labelZ, hoverLabel:hoverLabelZ, dataBar:dataZ} = generateData(dataZ);
-    displayChart(labelX, hoverLabelX, dataX, 'chartX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
-    displayChart(labelY, hoverLabelY, dataY, 'chartY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
-    displayChart(labelZ, hoverLabelZ, dataZ, 'chartZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)');
+    return [generateData(dataX), generateData(dataY), generateData(dataZ)];
 }
 
 // Create the X and Y axis for a bar chart from a data array 
@@ -59,47 +62,54 @@ function generateData(data) {
 }
 
 // Create the chart and display it with the given data
-function displayChart(label, hoverLabel, data, chartID, title, color) {
-    var chart = document.getElementById(chartID).getContext('2d');
-    new Chart(chart, {
-        type: 'bar',
-        data: {
-            labels: label,
-            datasets: [{
-                data: data,
-                backgroundColor: color,
-                borderColor: color,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title,
-                    font: {
-                        size: 20
+export function displayChart(label, hoverLabel, data, chartID, title, color) {
+    var context = document.getElementById(chartID).getContext('2d');
+    var chart = Chart.getChart(context);
+    if(chart) {
+        /* chart.data.labels = label;
+        chart.data.datasets[0].data = data;
+        chart.update(); */
+    } else {
+        new Chart(context, {
+            type: 'bar',
+            data: {
+                labels: label,
+                datasets: [{
+                    data: data,
+                    backgroundColor: color,
+                    borderColor: color,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: title,
+                        font: {
+                            size: 20
+                        }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => hoverLabel[context.parsed.x]
+                        },
                     }
                 },
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: (context) => hoverLabel[context.parsed.x]
-                    },
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        display:false
-                    },
-                    ticks: {
-                        callback: (val) => label[val].toPrecision(3)
+                scales: {
+                    x: {
+                        grid: {
+                            display:false
+                        },
+                        ticks: {
+                            callback: (val) => label[val].toPrecision(3)
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
 }
