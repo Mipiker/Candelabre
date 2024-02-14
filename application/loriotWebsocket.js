@@ -7,57 +7,58 @@ let websocket;
 let downlinksDates = [];
 
 // Connect the websocket to loriot and manage received packets
-function connectToWebsocket() {
-    
-    websocket = new WebSocket(uri); 
+async function connectToWebsocket() {
+    return new Promise((resolve, reject) => {
+        websocket = new WebSocket(uri);
 
-    websocket.on('open', function () {
-        console.log('Connected to the loriot server');
-    });
+        websocket.onopen = () => {
+            console.log('Connected to the Loriot server');
+            resolve(websocket);
+        };
 
-    websocket.on('message', function (data) {
-        const obj = JSON.parse(data.toString());
-        console.log(`CMD:${obj.cmd} | EUI:${obj.EUI} | DATA:${obj.data}`);
-        if(obj.cmd === 'rx' && obj.data.length) {
-            logManager.saveData(obj.EUI, decodeData(obj.data));
-        }
-    });
+        websocket.onmessage = (event) => {
+            const data = JSON.parse(event.data.toString());
+            console.log(`CMD:${data.cmd} | EUI:${data.EUI} | DATA:${data.data}`);
+            if (data.cmd === 'rx' && data.data.length) {
+                logManager.saveData(data.EUI, decodeData(data.data));
+            }
+        };
 
-    websocket.on('close', function (code, reason) {
-        console.log(`Loriot server disconnected with code: ${code}, reason: ${reason}`);
-    });
+        websocket.onclose = (event) => {
+            console.log(`Loriot server disconnected with code: ${event.code}, reason: ${event.reason}`);
+            reject(event);
+        };
 
-    websocket.on('error', function (error) {
-        console.error('Loriot websocket error: ', error);
+        websocket.onerror = (error) => {
+            console.error(`Loriot WebSocket error: ${error}`);
+            reject(error);
+        };
     });
 }
 
 // Send data to the device EUI on port
-function sendPayload(EUI, port, data) {
-    if(websocket && websocket.readyState == WebSocket.OPEN) {
-        const payload = {
-            cmd:'tx',
-            EUI:EUI,
-            port:port,
-            confirmed:false,
-            data:data
-        }
-        websocket.send(JSON.stringify(payload));
-        console.log('Paylaod send to loriot server');
-    } else { 
-        console.log('Loriot websocket connection not open. Cannot send payload');
+async function sendPayload(EUI, port, data) {
+    while(!(websocket && websocket.readyState == WebSocket.OPEN))
+        await connectToWebsocket();
+    const payload = {
+        cmd: 'tx',
+        EUI: EUI,
+        port: port,
+        confirmed: true,
+        data: data
     }
+    websocket.send(JSON.stringify(payload));
 }
 
 // Instruct the device EUI to take a identificated measure with parameter fe and Ne  
-function takeMeasure(EUI, fe, Ne, wind) {
+async function takeMeasure(EUI, fe, Ne, wind) {
     if(downlinksDates.length == 65535)
         downlinksDates = [];
     downlinksDates.push(new Date());
     data = Ne.toString(16).padStart(4, '0');
     data += fe.toString(16).padStart(2, '0');
     data += (downlinksDates.length - 1).toString(16).padStart(4, '0');
-    sendPayload(EUI, 1, data);
+    await sendPayload(EUI, 1, data);
     logManager.saveDownlink(downlinksDates[downlinksDates.length - 1], wind);
 }
 
