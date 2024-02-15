@@ -13,7 +13,7 @@ async function init() {
     do {
         var websocket = await loriotWebsocket.connectToWebsocket();
     } while(!(websocket && websocket.readyState == WebSocket.OPEN));
-    await loriotWebsocket.takeMeasure('0080E115000A9B3C', 20, 128*4, 0);
+    //await loriotWebsocket.takeMeasure('0080E115000A9B3C', 20, 128*4, 0);
 }
 
 async function mainLoop() {

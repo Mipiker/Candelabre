@@ -18,9 +18,11 @@ async function connectToWebsocket() {
 
         websocket.onmessage = (event) => {
             const data = JSON.parse(event.data.toString());
-            console.log(`CMD:${data.cmd} | EUI:${data.EUI} | DATA:${data.data}`);
             if (data.cmd === 'rx' && data.data.length) {
                 logManager.saveData(data.EUI, decodeData(data.data));
+                console.log(`DATE:${utils.getDate(new Date(data.ts))} | CMD:${data.cmd} | EUI:${data.EUI} | DATA:${data.data} | SNR:${data.snr}`);
+            } else {
+                console.log(`DATE:${utils.getDate(new Date(data.ts))} | CMD:${data.cmd} | EUI:${data.EUI}`);
             }
         };
 

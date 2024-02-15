@@ -8,7 +8,6 @@ const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},fr&appid=
 async function weatherRequest() {
     return await axios.get(url)
     .then(response => {
-        console.log(`Wind speed: ${response.data.wind.speed} m/s`);
         return response.data.wind.speed;
     })
     .catch(error => {

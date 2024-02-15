@@ -12,11 +12,8 @@ async function saveData(EUI, data) {
     const path = `./log/${EUI}.csv`;
     const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + `${Object.values(data).join(',')}\n`;
     fs.appendFile(path, newCsvLine, 'utf8', (err) => {
-        if (err) {
+        if (err)
             console.error(`Error saving data of device ${EUI}:`, err);
-            return;
-        }
-        console.log(`Data of device ${EUI} saved successfully`);
     });
 }
 
@@ -30,11 +27,8 @@ async function saveDownlink(date, wind) {
     const path = './log/downlink.csv';
     const newCsvLine = (fileHasNewLine(path) ? '' : '\n') + `${utils.getDate(date)},${wind}\n`;
     fs.appendFile(path, newCsvLine, 'utf8', (err) => {
-        if (err) {
+        if (err)
             console.error(`Error saving ${date.toUTCString()} downlink :`, err);
-            return;
-        }
-        console.log(`Downlink ${date.toUTCString()} saved successfully`);
     });
 }
 
