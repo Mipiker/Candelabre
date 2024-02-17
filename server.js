@@ -8,7 +8,7 @@ app.listen(port, () => {
 
 app.use(express.static('./server')); 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/server/puissance.html');
+    res.sendFile(__dirname + '/server/home.html');
   });
 
 app.use('/log', express.static('./log'));

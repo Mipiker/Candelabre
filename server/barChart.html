@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrammes en barre</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src ="barChart.js"></script>
+    <link rel="stylesheet" href="barChart.css">
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    
+    <div class="content">
+        <div id="dynamic-downlink-list">
+            <h2 id="data-date-title"></h2>
+            <input type="text" id="searchInput" placeholder="Chercher...">
+        </div>
+        <canvas id="power"></canvas>
+        <canvas id="magnitudeY"></canvas>
+        <canvas id="magnitudeZ"></canvas>
+    </div>
+ 
+    <div class="menu">
+        <a href="home.html">
+            <img src="./img/logo-rincent.png" alt="Logo Rincent">
+        </a>
+        <a href="home.html">
+            <button>Accueil</button>
+        </a>
+        <a href="devices.html">
+            <button>Appareils</button>
+        </a>
+        <a href="barChart.html">
+            <button id="selectedButton">Diagrammes en barre</button>
+        </a>
+        <a href="mesures.html">
+            <button>Mesures Détaillées</button>
+        </a>
+    </div>
+ 
+</body>
+</html>

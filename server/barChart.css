@@ -3,7 +3,7 @@
     left: 350px;
     top: 80px;
     width: calc(0.5 * (100% - 500px));
-    min-width: 300px;
+    min-width: 400px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
