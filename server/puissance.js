@@ -10,9 +10,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     var {label:labelX, hoverLabel:hoverLabelX, dataBar:dataX} = data[0];
     var {label:labelY, hoverLabel:hoverLabelY, dataBar:dataY} = data[1];
     var {label:labelZ, hoverLabel:hoverLabelZ, dataBar:dataZ} = data[2];
-    displayChart(labelX, hoverLabelX, dataX, 'chartX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
-    displayChart(labelY, hoverLabelY, dataY, 'chartY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
-    displayChart(labelZ, hoverLabelZ, dataZ, 'chartZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)');
+    displayChart(labelX, hoverLabelX, dataX, 'powerX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
+    displayChart(labelY, hoverLabelY, dataY, 'powerY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
+    displayChart(labelZ, hoverLabelZ, dataZ, 'powerZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)');
+
+    /* var {label:labelX, hoverLabel:hoverLabelX, dataBar:dataX} = data[0];
+    var {label:labelY, hoverLabel:hoverLabelY, dataBar:dataY} = data[1];
+    var {label:labelZ, hoverLabel:hoverLabelZ, dataBar:dataZ} = data[2];
+    displayChart(labelX, hoverLabelX, dataX, 'magnitudeX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
+    displayChart(labelY, hoverLabelY, dataY, 'magnitudeY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
+    displayChart(labelZ, hoverLabelZ, dataZ, 'magnitudeZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)'); */
 });
 
 const searchInput = document.getElementById('searchInput');
@@ -20,16 +27,14 @@ searchInput.addEventListener('input', handleSearch);
 
 // Function to handle search input
 function handleSearch() {
-    const searchText = searchInput.value.toLowerCase(); // Get the search text
-    const listItems = document.querySelectorAll('.dynamic-downlink-list li'); // Get all list items
-
-    console.log('coucou');
+    const searchText = searchInput.value.toLowerCase();
+    const listItems = document.querySelectorAll('.content li');
+    var count = 0; 
     listItems.forEach(item => {
-        const text = item.textContent.toLowerCase(); // Get text content of each list item
-        if (text.includes(searchText)) {
-            item.style.display = 'block'; // Show the item if it matches the search
-        } else {
-            item.style.display = 'none'; // Hide the item if it doesn't match the search
+        item.style.display = 'none';
+        if (item.textContent.toLowerCase().includes(searchText) && count < 10) {
+            item.style.display = 'block';
+            count++;
         }
     });
 }

@@ -14,13 +14,24 @@ export async function fillDownlinkList(downlink, devices, itemX, itemY, itemZ, t
             var {label:labelX, hoverLabel:hoverLabelX, dataBar:dataX} = data[0];
             var {label:labelY, hoverLabel:hoverLabelY, dataBar:dataY} = data[1];
             var {label:labelZ, hoverLabel:hoverLabelZ, dataBar:dataZ} = data[2];
-            displayChart(labelX, hoverLabelX, dataX, 'chartX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
-            displayChart(labelY, hoverLabelY, dataY, 'chartY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
-            displayChart(labelZ, hoverLabelZ, dataZ, 'chartZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)');
+            displayChart(labelX, hoverLabelX, dataX, 'powerX', `${title} sur l'axe X`, 'rgba(54, 162, 235, 0.5)');
+            displayChart(labelY, hoverLabelY, dataY, 'powerY', `${title} sur l'axe Y`, 'rgba(255, 99, 12, 0.5)');
+            displayChart(labelZ, hoverLabelZ, dataZ, 'powerZ', `${title} sur l'axe Z`, 'rgba(255, 99, 132, 0.5)');
         });
         ul.insertBefore(li, ul.firstChild);
     }
     container.appendChild(ul);
+    var count = 0; 
+    const searchText = document.getElementById('searchInput').value.toLowerCase();
+    const listItems = document.querySelectorAll('.content li');
+    listItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = 'none';
+        if (text.includes(searchText) && count < 10) {
+            item.style.display = 'block';
+            count++;
+        }
+    });
 }
 
 // Search data and create the three bar charts for power, max magnitude and max frequency

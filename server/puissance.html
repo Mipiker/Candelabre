@@ -6,16 +6,22 @@
     <title>Puissance</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src ="puissance.js"></script>
-    <script type="module" src ="readLogManager.js"></script>
     <link rel="stylesheet" href="graph.css">
     <link rel="stylesheet" href="menu.css">
 </head>
 <body>
     
-    <div class="graph">
-        <canvas id="chartX"></canvas>
-        <canvas id="chartY"></canvas>
-        <canvas id="chartZ"></canvas>
+    <div class="content">
+        <div id="dynamic-downlink-list">
+            <h2 >Liste des données reçues</h2>
+            <input type="text" id="searchInput" placeholder="Chercher...">
+        </div>
+        <canvas id="powerX"></canvas>
+        <canvas id="powerY"></canvas>
+        <canvas id="powerZ"></canvas>
+       <!--  <canvas id="magnitudeX"></canvas>
+        <canvas id="magnitudeY"></canvas>
+        <canvas id="magnitudeZ"></canvas> -->
     </div>
  
     <div class="menu">
@@ -35,11 +41,6 @@
         <a href="mesures.html" >
             <button>Mesures Détaillées</button>
         </a>
-    </div>
-        
-    <div id="dynamic-downlink-list" class="dynamic-downlink-list">
-        <h2>Liste des données reçues</h2>
-        <input type="text" id="searchInput" placeholder="Chercher...">
     </div>
  
 </body>

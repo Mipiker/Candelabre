@@ -1,50 +1,21 @@
-.graph {
-    position: absolute;
-    left: max(50%, 600px);
-    right: 50px;
-    top: 70px;
-    min-width: 400px;
-}
-
-.graph canvas {
-    margin-bottom: 50px;    
-}
-
-.dynamic-downlink-list {
+.content {
     position: absolute;
     left: 350px;
     top: 80px;
-    overflow: visible;
+    width: calc(0.5 * (100% - 500px));
+    min-width: 300px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 50px;
 }
 
-.dynamic-downlink-list h2 {
+.content h2 {
     margin-top: 0px;
     margin-bottom: 20px;
 }
 
-.dynamic-downlink-list ul {
-    list-style: none;
-    cursor: pointer;
-    padding: 0;
-    margin-top: 0px;
-}
-
-.dynamic-downlink-list li:hover {
-    background-color: hsla(0, 1%, 60%, 0.608);
-    border-radius: 15px;
-    width: 154px;
-}
-
-.dynamic-downlink-list li {
-    margin-bottom: 5px;
-    border-radius: 15px;
-    padding-left: 10px;
-    margin-left: -10px;
-    width: 154px;
-    transition: background-color 0.1s, color 0.1s;
-}
-
-.dynamic-downlink-list input {
+.content input {
     border: 3px solid #ccc;
     border-radius: 20px;
     padding: 8px 12px;
@@ -54,6 +25,28 @@
     outline: none;
 }
 
-.dynamic-downlink-list input:focus {
+.content input:focus {
     border: 3px solid #000000;
+}
+
+.content ul {
+    list-style: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 0px;
+}
+
+.content li {
+    margin-bottom: 5px;
+    border-radius: 15px;
+    padding-left: 10px;
+    margin-left: -10px;
+    width: 154px;
+    transition: background-color 0.1s, color 0.1s;
+}
+
+.content li:hover {
+    background-color: hsla(0, 1%, 60%, 0.608);
+    border-radius: 15px;
+    width: 154px;
 }
