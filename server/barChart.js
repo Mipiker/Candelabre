@@ -107,10 +107,13 @@ function displayAllCharts(downlink, devicesData) {
     const powerChartData = generateChartData(powerData);
     displayChart(powerChartData.label, powerChartData.hoverLabel, powerChartData.dataBar, 'power', "Nombre d'appareils selon la puissance", 'rgba(54, 162, 235, 0.5)');
     // Display max magnitude
+    const magnitudeXChartData = generateChartData(getData(downlink, devicesData, 'pX'));
     const magnitudeYChartData = generateChartData(getData(downlink, devicesData, 'pY'));
     const magnitudeZChartData = generateChartData(getData(downlink, devicesData, 'pZ'));
+    displayChart(magnitudeXChartData.label, magnitudeXChartData.hoverLabel, magnitudeXChartData.dataBar, 'magnitudeX', "Nombre d'appareils selon l'amplitude maximale du spectre sur l'axe X", 'rgba(54, 162, 235, 0.5)');
     displayChart(magnitudeYChartData.label, magnitudeYChartData.hoverLabel, magnitudeYChartData.dataBar, 'magnitudeY', "Nombre d'appareils selon l'amplitude maximale du spectre sur l'axe Y", 'rgba(54, 162, 235, 0.5)');
     displayChart(magnitudeZChartData.label, magnitudeZChartData.hoverLabel, magnitudeZChartData.dataBar, 'magnitudeZ', "Nombre d'appareils selon l'amplitude maximale du spectre sur l'axe Z", 'rgba(54, 162, 235, 0.5)');
+   
 }
 
 // Create or update the chart and display it with the given data

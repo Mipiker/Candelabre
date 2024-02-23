@@ -12,5 +12,4 @@ app.get('/', (req, res) => {
   });
 
 app.use('/log', express.static('./log'));
-
 app.use('/img', express.static('./img'));
